@@ -27,6 +27,18 @@ With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoi
 
 SSL termination is the process where SSL-encrypted traffic is decrypted at the proxy, in this case, NGINX Instance Manager. Once decrypted, the traffic can be sent to its destination unencrypted or re-encrypted, depending on the configuration.
 
+{{< important >}}
+**Certificate Revocation Checking is Recommended**
+
+For maximum security, always check for revoked certificates when configuring SSL/TLS. Without revocation checking, certificates that have been compromised, mis-issued, or otherwise revoked may still be accepted, which can put your environment at risk.
+
+NGINX supports certificate revocation checking using Certificate Revocation Lists (CRLs) and the Online Certificate Status Protocol (OCSP):
+- To enable CRL checking, use the [`ssl_crl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl) directive.
+- To enable OCSP, use the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive.
+
+For more details, see the [NGINX SSL Termination guide](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/).
+{{< /important >}}
+
 To secure traffic between NGINX Plus instances and NGINX Instance Manager, you must configure an SSL certificate and key in the NGINX configuration. This setup applies to both NGINX Open Source and NGINX Plus. For more details, see the [NGINX SSL Termination guide](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/).
 
 Starting with NGINX Plus R33, you must also enable `ssl_verify` to verify the SSL certificate used by NGINX Instance Manager when reporting telemetry data. See the section on [`ssl_verify` and usage reporting](#ssl_verify-and-usage-reporting-in-nginx-plus-r33) for more details.
