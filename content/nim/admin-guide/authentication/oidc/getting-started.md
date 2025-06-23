@@ -8,6 +8,23 @@ type:
 - tutorial
 ---
 
+{{<call-out "note" "Authentication methods in NGINX Instance Manager">}}
+NGINX Instance Manager uses **basic authentication** by default. You must explicitly configure and enable OpenID Connect (OIDC) if you want to use it. When OIDC is enabled, basic authentication is disabled for all users, including the default `admin` user. 
+
+**Summary of authentication methods:**
+
+| Scenario | Authentication Method | API Example |
+|----------|----------------------|-------------|
+| Default/"vanilla" deployment | Basic authentication | `curl -u "<USERNAME>:<PASSWORD>" ...` or use `Authorization: Basic <base64_credentials>` |
+| OIDC enabled | Bearer token (OIDC) | `curl --header "Authorization: Bearer <access token>" ...` |
+
+- For details on basic authentication, see [Set up basic authentication](/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication/).
+- For details on OIDC, continue with this guide.
+
+> **Note:**
+> API calls require a bearer token **only** when OIDC is active. If you have not enabled OIDC, use basic authentication for both the web UI and API requests.
+{{</call-out>}}
+
 ## Overview
 
 We recommend using OpenID Connect (OIDC) as the preferred authentication method for NGINX Instance Manager. OIDC offers several advantages, including Single Sign-On (SSO) for users and simplified user management for administrators through user groups. OIDC also enables easy scalability and streamlined user access management.
