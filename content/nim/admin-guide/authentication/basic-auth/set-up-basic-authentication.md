@@ -1,5 +1,21 @@
 ---
 title: Set up basic authentication
+
+## Authentication Methods Overview
+
+NGINX Instance Manager supports two authentication methods: **Basic Authentication** (default) and **OpenID Connect (OIDC)**. 
+
+- **Basic Authentication** is enabled by default after installation. All users, including the default `admin`, authenticate with a username and password. 
+- **OIDC** must be explicitly configured. When OIDC is enabled, **basic authentication is disabled for all users**, including the default `admin` account. OIDC allows authentication via an external identity provider and supports bearer token authentication for API requests.
+
+| Authentication Method | Default After Install | API Example Format | When to Use | Reference |
+|----------------------|----------------------|-------------------|-------------|-----------|
+| Basic Auth           | Yes                  | `-u user:pass` or `Authorization: Basic ...` | For most new installations and unless OIDC is configured | [This guide](#) |
+| OIDC (Bearer Token)  | No                   | `Authorization: Bearer <token>` | When OIDC is explicitly configured and enabled | [OIDC Guide](../oidc/getting-started.md) |
+
+{{< call-out "note" "API Example Note" >}}
+Some API examples in the NGINX Instance Manager documentation use bearer tokens (OIDC). These only work if OIDC is enabled. For default/basic setups, use basic authentication as shown in this guide.{{< /call-out >}}
+
 description: Learn how to manage user access in NGINX Instance Manager using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords.
 toc: true
 weight: 10
