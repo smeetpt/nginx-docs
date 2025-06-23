@@ -981,14 +981,52 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
 
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
+  > **Note:** The OpenSSL build process and configuration options differ depending on your operating system and CPU architecture. The following examples cover common scenarios. For more details and the most up-to-date instructions, see the official [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md).
+
+  #### MacOS
+
+  - **For Intel-based (x86_64) Macs:**
+    ```shell
+    wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+    tar -zxf openssl-3.0.13.tar.gz
+    cd openssl-3.0.13
+    ./Configure darwin64-x86_64-cc --prefix=/usr
+    make
+    sudo make install
+    ```
+    > **Note:** The `darwin64-x86_64-cc` target is specific to Intel-based Macs. To check your architecture, run `uname -m` (should return `x86_64` for Intel).
+
+  - **For Apple Silicon (ARM64) Macs (e.g., M1, M2):**
+    ```shell
+    wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+    tar -zxf openssl-3.0.13.tar.gz
+    cd openssl-3.0.13
+    ./Configure darwin64-arm64-cc --prefix=/usr
+    make
+    sudo make install
+    ```
+    > **Note:** The `darwin64-arm64-cc` target is for Apple Silicon (ARM64) Macs. To check your architecture, run `uname -m` (should return `arm64` for Apple Silicon).
+
+  #### Linux
+
+  Most Linux distributions do not require specifying a platform target. Use the following typical command:
   ```shell
-  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
   tar -zxf openssl-3.0.13.tar.gz
   cd openssl-3.0.13
-  ./Configure darwin64-x86_64-cc --prefix=/usr
-  make
+  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
+  make -j$(nproc)
   sudo make install
   ```
+  > **Tip:** You can also consult your distribution's documentation or the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md) for additional options and platform-specific notes.
+
+  #### Windows/WSL
+
+  For Windows or Windows Subsystem for Linux (WSL), the build process is different and may require Visual Studio or MSYS2. Refer to the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md) for detailed instructions for Windows platforms.
+
+  ---
+
+  For more information on available configuration targets and platform-specific instructions, see the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md) and [OpenSSL Configure documentation](https://github.com/openssl/openssl/blob/master/INSTALL.md#configuration-options).
 
   Example for Ubuntu and Debian:
   ```shell
