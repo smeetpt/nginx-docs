@@ -14,6 +14,10 @@ We recommend using OpenID Connect (OIDC) as the preferred authentication method 
 
 NGINX Instance Manager’s implementation of OIDC is designed to work with any Identity Provider (IdP) that supports the OIDC protocol. The instructions below are general and can be applied to any IdP.
 
+{{<call-out "important" "Which authentication method is active?" >}}
+By default, NGINX Instance Manager uses basic authentication. OIDC must be explicitly configured. When OIDC is enabled, basic authentication is disabled for all users, including the default `admin` user. In this case, users must use bearer tokens (obtained via OIDC login) for API and UI access. If you have not enabled OIDC or want to revert, see the [Set up basic authentication guide]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}). Before following API examples, check which authentication method is active in your environment.
+{{</call-out>}}
+
 {{<call-out "tip" "Do you need to configure a specific IdP?">}}To learn how to configure OIDC with a specific identity provider, refer to the linked topics in the [Set up specific IdPs for OIDC](#oidc-specific-idps) section at the bottom of this page.{{</call-out>}}
 
 {{<call-out "important" "OIDC is not supported in forward-proxy mode" "fa-solid fa-triangle-exclamation" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
