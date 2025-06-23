@@ -65,6 +65,44 @@ server {
 
 Mutual TLS (mTLS) is a security method that uses client certificates to verify both the server and the client during communication. This ensures that both NGINX Instance Manager and NGINX Plus instances are securely authenticated, protecting your network from unauthorized access.
 
+---
+
+## Certificate Revocation Checking (CRL/OCSP)
+
+{{< important >}}
+**Omitting certificate revocation checking can create a false sense of security.** Even with `ssl_verify` enabled, revoked certificates (due to compromise, mis-issuance, or other reasons) may still be accepted if revocation checking is not configured. This can allow unauthorized or malicious access.
+{{< /important >}}
+
+**Best Practice:** When configuring SSL/TLS for NGINX Instance Manager, always enable certificate revocation checking to ensure that revoked certificates are not accepted.
+
+NGINX supports two main methods for certificate revocation checking:
+
+- **Certificate Revocation Lists (CRL):** Use the [`ssl_crl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl) directive to specify a file with a list of revoked certificates.
+- **Online Certificate Status Protocol (OCSP):** Use the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive to enable OCSP validation of client certificates.
+
+For detailed implementation steps, see:
+- [NGINX SSL Termination Guide: OCSP Validation of Client Certificates](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/#ocsp-validation-of-client-certificates)
+- [NGINX `ssl_crl` directive](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl)
+- [NGINX `ssl_ocsp` directive](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp)
+
+**Example: Enabling CRL and OCSP in a server block**
+
+```nginx
+server {
+    listen 443 ssl;
+    ...
+    ssl_client_certificate /etc/nms/certs/ca.pem;
+    ssl_verify_client on;
+    ssl_crl /etc/nms/certs/ca.crl;  # Path to your CRL file
+    ssl_ocsp on;                    # Enable OCSP checking
+    ...
+}
+```
+
+> **Note:** Ensure your CA provides up-to-date CRLs or supports OCSP for effective revocation checking.
+
+---
+
 With mTLS, each NGINX instance has a unique client certificate that NGINX Instance Manager verifies before allowing communication. You can configure NGINX as a proxy to handle client certificates for this secure exchange.
 
 Follow these steps to set up mTLS using a Public Key Infrastructure (PKI) system:
