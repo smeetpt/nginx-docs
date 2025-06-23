@@ -2,6 +2,10 @@
 docs: DOCS-1295
 ---
 
+:::note
+This example applies when basic authentication is enabled (the default for new NGINX Instance Manager installations). If OpenID Connect (OIDC) is enabled, you must use a bearer token in the Authorization header instead. For more information, see the [Basic Authentication guide](https://docs.nginx.com/nginx-instance-manager/admin-guide/authentication/basic-auth/set-up-basic-authentication/) and the [OIDC Getting Started guide](https://docs.nginx.com/nginx-instance-manager/admin-guide/authentication/oidc/getting-started/).
+:::
+
 To use basic authentication for API requests, include your base64-encoded credentials as a "Basic" token in the "Authorization" header. To create the base64-encoded credentials, run the following command:
 
 ```bash
