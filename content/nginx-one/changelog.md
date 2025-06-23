@@ -75,7 +75,7 @@ It allows you to:
 
 ### Manage certificates with Config Sync Groups
 
-With the NGINX One Console, you can now manage certificate deployment in Config Sync Groups.
+With NGINX One Console, you can now manage certificate deployment in Config Sync Groups.
 
 You can:
 
@@ -88,7 +88,7 @@ For more information, including warnings about risks, see our documentation on h
 
 ### Revert a configuration
 
-Using the NGINX One Console you can now:
+Using NGINX One Console you can now:
 
 - See a history of changes to the configuration on an instance or a Config Sync Group, as well as the content of the previous five configs published to that object
 - Review the differences between the current and other saved configurations
@@ -96,13 +96,13 @@ Using the NGINX One Console you can now:
 
 ### F5 AI Assistant
 
-In the F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The F5 AI Assistant explains those lines based on the official NGINX documentation.
+In F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The F5 AI Assistant explains those lines based on the official NGINX documentation.
 
 ## November 7, 2024
 
 ### Certificates
 
-From the NGINX One Console you can now:
+From NGINX One Console you can now:
 
 - Monitor all certificates configured for use by your connected NGINX Instances.
 - Ensure that your certificates are current and correct.
@@ -114,7 +114,7 @@ For more information, see the full documentation on how you can [Manage Certific
 
 ### Config Sync Groups
 
-Config Sync Groups are now available in the F5 NGINX One Console. This feature allows you to manage and synchronize NGINX configurations across multiple instances as a single entity, ensuring consistency and simplifying the management of your NGINX environment.
+Config Sync Groups are now available in F5 NGINX One Console. This feature allows you to manage and synchronize NGINX configurations across multiple instances as a single entity, ensuring consistency and simplifying the management of your NGINX environment.
 
 For more information, see the full documentation on [Managing Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}).
 
