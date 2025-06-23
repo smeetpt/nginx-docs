@@ -33,6 +33,17 @@ Starting with NGINX Plus R33, you must also enable `ssl_verify` to verify the SS
 
 The example below shows how to set up SSL termination for NGINX Instance Manager:
 
+{{< call-out "note" "Certificate revocation checking (CRL/OCSP) is strongly recommended" >}}
+Checking for revoked certificates is a critical security best practice. Without certificate revocation checking, compromised or invalid certificates may still be accepted, creating a false sense of security and exposing your environment to risk.
+
+NGINX supports certificate revocation checking using both Certificate Revocation Lists (CRL) and the Online Certificate Status Protocol (OCSP):
+
+- **CRL**: Use the [`ssl_crl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl) directive to specify a file with revoked certificates.
+- **OCSP**: Use the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive to enable OCSP checking.
+
+We recommend enabling at least one of these methods in your SSL/TLS configuration to ensure that revoked certificates are not accepted. For more details and configuration examples, see the [NGINX SSL Termination guide](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/#certificate-revocation-checking).
+{{< /call-out >}}
+
 <details open>
     <summary>/etc/nginx/conf.d/nms-http.conf</summary>
 
