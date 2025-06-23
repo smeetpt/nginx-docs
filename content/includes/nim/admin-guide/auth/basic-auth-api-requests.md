@@ -2,6 +2,10 @@
 docs: DOCS-1295
 ---
 
+{{< call-out "info" "Authentication method" >}}
+These instructions apply when NGINX Instance Manager is using basic authentication (the default after installation). If your deployment is configured to use OpenID Connect (OIDC), you must use a Bearer token for API authentication instead. For details, see the [OIDC authentication guide]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}).
+{{< /call-out >}}
+
 To use basic authentication for API requests, include your base64-encoded credentials as a "Basic" token in the "Authorization" header. To create the base64-encoded credentials, run the following command:
 
 ```bash
