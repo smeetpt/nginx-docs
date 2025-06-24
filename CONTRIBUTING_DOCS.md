@@ -75,6 +75,8 @@ These archetypes are adapted from some existing [templates](/templates/): please
 
 ## How to format documentation
 
+> **Important**: Do **not** use articles ("the", "a", "an") before NGINX product names, and always use the correct capitalization. For example, write "NGINX Agent" (not "the NGINX Agent" or "an NGINX Agent"). See our [style guide section on product names](https://github.com/nginx/documentation/blob/main/templates/style-guide.md#f5-brand-trademarks-and-product-names) for details.
+
 ### Basic Markdown formatting
 
 There are multiple ways to format text: for consistency and clarity, these are our conventions:
