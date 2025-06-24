@@ -81,7 +81,7 @@ March 27, 2025
 
 #### Description
 
-When the dashboard page and certificates page are loaded, the count displayed for total, valid, expired, expires soon, managed and unmanaged are incorrect.
+When dashboard page and certificates page are loaded, the count displayed for total, valid, expired, expires soon, managed and unmanaged are incorrect.
 
 #### Workaround
 
@@ -108,12 +108,12 @@ In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy fr
 
 #### Workaround
 
-1. Download the NGINX repository certificate and key:
+1. Download NGINX repository certificate and key:
    - Log in to [MyF5](https://account.f5.com/myf5).
    - Go to **My Products and Plans > Subscriptions**.
    - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
 
-2. Upload the certificate and key using the NGINX Instance Manager web interface:
+2. Upload the certificate and key using NGINX Instance Manager web interface:
    - Go to **Settings > NGINX Repo Connect**.
    - Select **Add Certificate**.
    - Choose **Select PEM files** or **Manual entry**.
@@ -255,7 +255,7 @@ If NGINX Agent is configured to monitor NGINX App Protect before App Protect is 
 
 #### Workaround
 
-Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_publication" as "false". Then restart the nginx-agent process running `sudo systemctl restart nginx-agent`.
+Edit "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_publication" as "false". Then restart nginx-agent process running `sudo systemctl restart nginx-agent`.
 
 ---
 
@@ -742,7 +742,7 @@ This error can occur when there is a desyncronization between the NGINX Agent an
 
 #### Workaround
 
-Restart the NGINX Agent:
+Restart NGINX Agent:
 
 ``` bash
 sudo systemctl restart nginx-agent
