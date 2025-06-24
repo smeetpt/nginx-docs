@@ -1,6 +1,6 @@
 # NGINX Documentation repository 
 
-This directory contains the documentation for the NGINX Documentation repository.
+This directory contains documentation for NGINX Documentation repository.
 
 It's used by the DocOps team to record how we configure our tools and instructions for certain precise tasks.
 
