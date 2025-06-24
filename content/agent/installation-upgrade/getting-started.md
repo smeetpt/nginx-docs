@@ -72,7 +72,7 @@ tls:
   skip_verify: true
 ```
 
-For more information, see [Agent Protocol Definitions and Documentation](https://github.com/nginx/agent/tree/main/docs/proto/README.md).
+For more information, see [Agent Protocol Definitions and Documentation](https://github.com/nginx/agent/tree/main/proto).
 
 ### Enable the REST interface
 
