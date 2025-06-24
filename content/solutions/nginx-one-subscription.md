@@ -29,7 +29,7 @@ You can deploy these components in various environments:
 
 ### Management and Monitoring
 
-Monitor and manage your NGINX data planes through the NGINX One service in F5 Distributed Cloud.
+Monitor and manage your NGINX data planes through NGINX One service in F5 Distributed Cloud.
 
 ## Access to NGINX One
 
