@@ -105,7 +105,7 @@ In this release we have resolved the following issues:
 
 We have made the following updates to the documentation:
 
-- docs: update GPG keys by [@Jcahilltorre](https://github.com/Jcahilltorre) in [#776](https://github.com/nginx/agent/pull/776)
+- docs: update GPG keys by Jcahilltorre in [#776](https://github.com/nginx/agent/pull/776)
 - Add new docker images to v2 pipeline for integration testing by [@oliveromahony](https://github.com/oliveromahony) in [#756](https://github.com/nginx/agent/pull/756)
 - Update website changelog for v2.37.0 by [@ADubhlaoich](https://github.com/ADubhlaoich) in [#790](https://github.com/nginx/agent/pull/790)
 - Pass on custom error log path at the time of validating config by [@achawla2012](https://github.com/achawla2012) in [#774](https://github.com/nginx/agent/pull/774)
@@ -137,7 +137,7 @@ In this release we have resolved the following issues:
 - The letter v is now always prepended to output of -v by [@olli-holmala](https://github.com/olli-holmala) in [#751](https://github.com/nginx/agent/pull/751)
 - Fix backoff to drop Metrics Reports from buffer after max_elapsed_time has been reached by [@oliveromahony](https://github.com/oliveromahony) in [#752](https://github.com/nginx/agent/pull/752)
 - Fix Post Install Script Issues by [@spencerugbo](https://github.com/spencerugbo) in [#739](https://github.com/nginx/agent/pull/739)
-- docs: fix github links in changelog by [@Jcahilltorre](https://github.com/Jcahilltorre) in [#770](https://github.com/nginx/agent/pull/770)
+- docs: fix github links in changelog by Jcahilltorre in [#770](https://github.com/nginx/agent/pull/770)
 - Fix post install script for when no nginx instance is installed by [@dhurley](https://github.com/dhurley) in [#773](https://github.com/nginx/agent/pull/773)
 
 ### 📝 Documentation
@@ -186,7 +186,7 @@ We have made the following updates to the documentation:
 - More flexible container images for the official images by [@oliveromahony](https://github.com/oliveromahony) in [#729](https://github.com/nginx/agent/pull/729)
 - Update configuration examples by [@nginx-seanmoloney](https://github.com/nginx-seanmoloney) in [#731](https://github.com/nginx/agent/pull/731)
 - updated github.com/rs/cors version by [@oliveromahony](https://github.com/oliveromahony) in [#735](https://github.com/nginx/agent/pull/735)
-- docs: update changelog by [@Jcahilltorre](https://github.com/Jcahilltorre) in [#736](https://github.com/nginx/agent/pull/736)
+- docs: update changelog by Jcahilltorre in [#736](https://github.com/nginx/agent/pull/736)
 - Upgrade crossplane by [@oliveromahony](https://github.com/oliveromahony) in [#737](https://github.com/nginx/agent/pull/737)
 
 ---
@@ -270,7 +270,7 @@ In this release we have resolved the following issues:
 
 We have made the following updates to the documentation:
 
-- chore: add 2.33.0 changelog by [@Jcahilltorre](https://github.com/Jcahilltorre) in [#622](https://github.com/nginx/agent/pull/622)
+- chore: add 2.33.0 changelog by Jcahilltorre in [#622](https://github.com/nginx/agent/pull/622)
 - Change environment variable list to table with CLI references by [@ADubhlaoich](https://github.com/ADubhlaoich) in [#689](https://github.com/nginx/agent/pull/689)
 - Add health checks documentation by [@dhurley](https://github.com/dhurley) in [#673](https://github.com/nginx/agent/pull/673)
 
