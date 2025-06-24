@@ -17,8 +17,9 @@ nd-product:
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
 
 [//]: # "Begin each document with a sentence or two explaining what the purpose of the guide is, and what high-level actions to expect. No need to adhere precisely the example text given anywhere in this template."
+[//]: # "Do not use articles (the, a, an) before product names. Always capitalize product names correctly, e.g., NGINX, NGINX One Console. See the style guide for details."
 
-This guide explains how to <X> with <Y>. In involves the use of <A>, <B> and <C>, demonstrating how <X> works with an example <Z>.
+This guide explains how to <X> with <Y>. It involves the use of <A>, <B>, and <C>, demonstrating how <X> works with an example <Z>.
 
 ## Before you begin
 
