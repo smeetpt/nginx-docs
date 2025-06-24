@@ -77,6 +77,8 @@ These archetypes are adapted from some existing [templates](/templates/): please
 
 ### Basic Markdown formatting
 
+> **Note:** Do not use inline HTML `<span>` tags or other inline HTML for styling. All inline styling should be accomplished using Markdown formatting (bold, italics, inline code) as described below. This improves maintainability, readability, and consistency across the documentation.
+
 There are multiple ways to format text: for consistency and clarity, these are our conventions:
 
 - Bold: Two asterisks on each side - `**Bolded text**`.
