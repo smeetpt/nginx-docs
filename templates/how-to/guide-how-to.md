@@ -47,6 +47,8 @@ Before you start working on your how-tos, identify:
 - Use conditional imperatives. If you want x, do y. To achieve w, do z.
 - Do not explain concepts.
 - Sometimes it's helpful to occasionally provide links to supporting pieces of documentation for more information.Especially, when the user might need a link to supporting background or [conceptual](https://gitlab.com/tgdp/templates/-/tree/main/explanation) information and/or [reference](https://gitlab.com/tgdp/templates/-/tree/main/reference) materials. However, avoid providing too many links within the guide. Keep your users on a single page as much as possible and provide links to additional resources at the bottom of the page.
+
+- **Do not use inline HTML (such as `<span>` tags) for styling.** All formatting should use Markdown syntax: use `**bold**` for UI labels and key terms, backticks for inline code, and `_italics_` if needed. This ensures consistency, readability, and maintainability across documentation.
 - Avoid over-documenting multiple ways of achieving the same task. If there is more than one way to complete a given task, pick and only document the most common or recommended method of completing the task. Additional methods should be omitted or mentioned by providing a link or reference document. 
 - Avoid writing edge cases at the boundaries of your application's capability.
 - Always ensure that the steps provided in your how-to guide are technically accurate. Test your how-to instructions from start to finish so that you can uncover omitted steps, incorrect details, steps out of order, and information gaps that block users. If it's not possible to test it yourself, have a developer or subject matter expert demonstrate the step to you and record the session, if possible.
