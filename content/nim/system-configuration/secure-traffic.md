@@ -53,6 +53,12 @@ server {
     ssl_certificate         /etc/nms/certs/manager-server.pem;
     ssl_certificate_key     /etc/nms/certs/manager-server.key;
     ssl_client_certificate  /etc/nms/certs/ca.pem;
+    ssl_crl                 /etc/nms/certs/ca.crl;   # Enable CRL checking
+    ssl_ocsp                on;                      # Enable OCSP checking
+    ssl_ocsp_cache          shared:OCSP:10m;
+
+    # See the 'Certificate Revocation Checking' section for details.
+
 ```
 
 </details>
@@ -465,6 +471,88 @@ To generate the necessary certificates, follow these steps. You can modify these
 
 ---
 
+## Certificate Revocation Checking (CRL and OCSP)
+
+Certificate revocation checking is a critical security measure that ensures revoked certificates—due to compromise, expiration, or mis-issuance—are not accepted during SSL/TLS handshakes. Without revocation checking, a compromised certificate could still be trusted, exposing your environment to risk.
+
+NGINX supports two main methods for certificate revocation checking:
+
+- **Certificate Revocation Lists (CRL):** A file containing a list of revoked certificates, published by the Certificate Authority (CA).
+- **Online Certificate Status Protocol (OCSP):** A real-time protocol for checking the revocation status of a certificate with the CA's OCSP responder.
+
+### Enabling CRL Checking with `ssl_crl`
+
+To enable CRL checking, obtain the latest CRL file from your CA and configure the `ssl_crl` directive in your NGINX server block. Place the CRL file on the server and reference its path in your configuration:
+
+```nginx
+server {
+    listen 443 ssl;
+    ...
+    ssl_certificate         /etc/nms/certs/manager-server.pem;
+    ssl_certificate_key     /etc/nms/certs/manager-server.key;
+    ssl_client_certificate  /etc/nms/certs/ca.pem;
+    ssl_crl                 /etc/nms/certs/ca.crl;   # Enable CRL checking
+    ssl_ocsp                on;                      # Enable OCSP checking
+    ssl_ocsp_cache          shared:OCSP:10m;
+
+    # See the 'Certificate Revocation Checking' section for details.
+
+    ssl_crl                 /etc/nms/certs/ca.crl;
+    ...
+}
+```
+
+- Make sure to keep the CRL file up to date. If the CRL is missing or expired, client connections may fail.
+- After updating the CRL file, reload the NGINX configuration:
+
+```bash
+sudo nginx -s reload
+```
+
+For more information, see the [NGINX ssl_crl documentation](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl).
+
+### Enabling OCSP Checking with `ssl_ocsp`
+
+OCSP provides real-time revocation status. To enable OCSP stapling in NGINX, use the following directives:
+
+```nginx
+server {
+    listen 443 ssl;
+    ...
+    ssl_certificate         /etc/nms/certs/manager-server.pem;
+    ssl_certificate_key     /etc/nms/certs/manager-server.key;
+    ssl_client_certificate  /etc/nms/certs/ca.pem;
+    ssl_crl                 /etc/nms/certs/ca.crl;   # Enable CRL checking
+    ssl_ocsp                on;                      # Enable OCSP checking
+    ssl_ocsp_cache          shared:OCSP:10m;
+
+    # See the 'Certificate Revocation Checking' section for details.
+
+    ssl_ocsp                on;
+    ssl_ocsp_cache          shared:OCSP:10m;
+    ...
+}
+```
+
+- Ensure the certificate includes an OCSP responder URL. If not, you can specify it with `ssl_ocsp_responder`.
+- For more details, see the [NGINX ssl_ocsp documentation](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp).
+
+### Troubleshooting Revocation Checking
+
+- **If the CRL or OCSP responder is unavailable:**
+  - NGINX may reject client connections or log errors such as `certificate revoked` or `unable to get certificate CRL`.
+  - Check the error log for messages related to revocation failures.
+- **To verify revocation checking:**
+  - Use `openssl s_client -connect <host>:443 -crl_check` to test CRL.
+  - Use `openssl s_client -connect <host>:443 -status` to test OCSP.
+- **Best practice:**
+  - Always keep CRLs up to date and monitor OCSP responder availability.
+
+{{< call-out "note" "Security best practice" >}}
+Enabling certificate revocation checking (CRL and/or OCSP) is strongly recommended to prevent the acceptance of compromised or revoked certificates.{{< /call-out >}}
+
+---
+
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
 {{<call-out "note" "Version requirements" "">}}
@@ -531,3 +619,4 @@ If NGINX Agent and NGINX Instance Manager are having communication issues, follo
 
 2. **Check the logs for certificate issues**:
     - Review the logs for any errors related to certificates. Ensure the server is using the correct certificates and Certificate Authority (CA).
+    - Look for errors related to certificate revocation, such as `certificate revoked`, `unable to get certificate CRL`, or OCSP failures. These may indicate issues with CRL or OCSP configuration or availability.
