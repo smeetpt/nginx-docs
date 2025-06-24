@@ -19,11 +19,11 @@ This article describes how to configure and use runtime monitoring services in N
 
 NGINX Plus provides various monitoring tools for your server infrastructure:
 
-- the interactive Dashboard page available since NGINX Plus [Release 9]({{< ref "nginx/releases.md#r9" >}}) - a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
+- The interactive Dashboard page provides a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
 
-- NGINX REST API available since NGINX Plus [Release 14]({{< ref "nginx/releases.md#r14" >}}) - an interface that can obtain extended status information, reset statistics, manage upstream servers on-the-fly, and manage key-value store. With the API you can connect NGINX Plus status information with third-party tools that support the JSON interface, for example, NewRelic or your own dashboard.
+- The NGINX REST API provides extended status information, allows you to reset statistics, manage upstream servers on-the-fly, and manage the key-value store. With the API, you can connect NGINX Plus status information with third-party tools that support the JSON interface, such as NewRelic or your own dashboard.
 
-    > **Note**: Prior to NGINX Plus [R14]({{< ref "nginx/releases.md#r14" >}}), gathering statistics and management of upstream servers in the Dashboard was performed with the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules. Now the extended [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules are superseded by the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module. Starting from R16, the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules will be removed and completely superseded with the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module.
+    > **Note**: The [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module replaces the older [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules for monitoring and management.
 
 * * *
 
@@ -34,7 +34,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 <span id="prereq"></span>
 ## Prerequisites
 
-- NGINX Plus [R14]({{< ref "nginx/releases.md#r14" >}}) and later for NGINX Plus REST API and the Dashboard
+- NGINX Plus (current supported releases) for the REST API and the Dashboard
 - Data for statistics (see [Gathering Data to Appear in Statistics](#status_data))
 
 <span id="status_data"></span>
@@ -42,7 +42,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 In order to collect data from virtual servers, upstream server groups, or cache zones, you will need to *enable shared memory zones* for the objects you want to collect data for. A shared memory zone stores configuration and runtime state information referenced by NGINX worker processes.
 
-- To make [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) server to appear in statistics, specify the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive. The same zone name can be specified more than once for many [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) blocks. Since [R19]({{< ref "nginx/releases.md#r19" >}}), the [status_zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive can also be specified for [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) blocks - in this case, the statistics will be aggregated separately for servers and locations in the Dashboard:
+- To make [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) server to appear in statistics, specify the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive. The same zone name can be specified more than once for many [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) blocks. The [status_zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive can also be specified for [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) blocks—in this case, the statistics will be aggregated separately for servers and locations in the Dashboard:
 
     ```nginx
     server {
@@ -502,10 +502,7 @@ NGINX Plus allows you to explore the REST API documentation and send API command
 
 The main purpose of Swagger UI and the YAML OpenAPI spec is to document and visualize NGINX API commands. For security reasons it is not recommended using it in a production environment.
 
-Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagger UI was shipped together with NGINX Plus packages. Since NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}), the OpenAPI YAML specification and the Swagger UI is published separately, below.
-
-Alternatively, copy the link to the appropriate YAML file, and import into your preferred OpenAPI v2 tool.
-
+The OpenAPI YAML specification and Swagger UI are published separately from NGINX Plus packages. You can download the appropriate YAML file for your version and use it with your preferred OpenAPI v2 tool or the Swagger UI.
 
 <span id="swagger_enable"></span>
 ### Enabling the Swagger UI
@@ -522,17 +519,6 @@ To enable the Swagger UI:
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
 |[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "/nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}})| The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27]({{< ref "nginx/releases.md#r27" >}}), [28]({{< ref "nginx/releases.md#r28" >}}), [29]({{< ref "nginx/releases.md#r29" >}}) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v7/nginx_api.yaml) for API version 7 | NGINX Plus Releases [25]({{< ref "nginx/releases.md#r25" >}}), [26]({{< ref "nginx/releases.md#r26" >}}),| The `codes` data in `responses` for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone) were added|
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v6/nginx_api.yaml) for API version 6 | NGINX Plus Releases [20]({{< ref "nginx/releases.md#r20" >}}), [21]({{< ref "nginx/releases.md#r21" >}}), [22]({{< ref "nginx/releases.md#r22" >}}), [23]({{< ref "nginx/releases.md#r23" >}}), [24]({{< ref "nginx/releases.md#r24" >}}) | The [`/stream/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_),  [`/http/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_conns_), and  [`/http/limit_reqs/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) data were added |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v5/nginx_api.yaml) for API version 5 | NGINX Plus Release [19]({{< ref "nginx/releases.md#r19" >}}) | The `expire` parameter of a [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pair can be [set](https://nginx.org/en/docs/http/ngx_http_api_module.html#postHttpKeyvalZoneData) or [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchHttpKeyvalZoneKeyValue), the [`/resolvers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) and  [`/http/location_zones/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_location_zones_) data were added |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v4/nginx_api.yaml) for API version 4 | NGINX Plus Release [18]({{< ref "nginx/releases.md#r18" >}}) | The `path` and `method` fields of [nginx error object](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_error) were removed. These fields continue to exist in earlier api versions, but show an empty value |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v3/nginx_api.yaml) for API version 3 | NGINX Plus Releases [15]({{< ref "nginx/releases.md#r15" >}}), [16]({{< ref "nginx/releases.md#r16" >}}), [17]({{< ref "nginx/releases.md#r17" >}}) | The [`/stream/zone_sync/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_) data were added |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v2/nginx_api.yaml) for API version 2 | NGINX Plus Release [14]({{< ref "nginx/releases.md#r14" >}}) | The [`drain`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream_conf_server) parameter was added |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v1/nginx_api.yaml) for API version 1 | NGINX Plus Release [13]({{< ref "nginx/releases.md#r13" >}})| The [`/stream/keyvals/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) data were added |
-
-{{</bootstrap-table>}}
 
 3. Configure NGINX Plus to work with the Swagger UI. Create a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), for example, */swagger-ui*:
 
@@ -551,7 +537,6 @@ To enable the Swagger UI:
     }
     ```
 
-   For NGINX Plus Release 25 and earlier, the Swagger UI is located in the root directory specified by the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html*.
 
 
 3. Restrict access to this location only from a local network with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
@@ -578,7 +563,7 @@ To enable the Swagger UI:
 <span id="swagger_disable"></span>
 ### Disabling the Swagger UI
 
-In NGINX Plus Release 25 and earlier, the Swagger UI is a part of NGINX Plus package and is installed by default. For [security reasons](https://support.f5.com/csp/article/K73710094), you may want to block access to the Swagger UI. One of the ways to do it is to [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) the `404` status code in response to the URL that matches the `/swagger-ui` location:
+For [security reasons](https://support.f5.com/csp/article/K73710094), you may want to block access to the Swagger UI. One of the ways to do it is to [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) the `404` status code in response to the URL that matches the `/swagger-ui` location:
 
 ```nginx
 location /swagger-ui {
