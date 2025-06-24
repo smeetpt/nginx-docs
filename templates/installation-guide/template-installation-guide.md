@@ -12,7 +12,7 @@
 
 ## Installation types
 
-This guide explains the steps and instructions required to install {product name} on supported operating systems. It also explains how to configure, start, and uninstall {product name}}.
+This guide explains the steps and instructions required to install {product name} on supported operating systems. It also explains how to configure, start, and uninstall {product name}.
 
 {Include a table to capture the different installation types, such as:
 
@@ -43,7 +43,7 @@ This guide explains the steps and instructions required to install {product name
 
 |      | **Process**  | **More information** |
 | ---- | ------------ | -------------------- |
-| 1. | Before installing, check the system requirements to ensure your computer is supported in the latest version of {product name}. | {Link to relevant documents}        |
+| 1. | Before installing, check the system requirements to ensure your computer is supported in latest version of {product name}. | {Link to relevant documents}        |
 | 2. | Check the system prerequisites to install all the required {software,  dependencies, tools.}.    | {Link to relevant documents}                          |
 | 3. | {List additional steps.}          | {Link to relevant documents}                                    |
 | 4. | Verify that the installation was successful.  | {Link to relevant documents} |
