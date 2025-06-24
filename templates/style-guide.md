@@ -48,8 +48,10 @@ When writing documentation for our project, align with the default guide's voice
 
   - Using NGINX Plus Docker images with NGINX Instance Manager
 
-- Don't use articles ("the", "a") in front of product names. For example, use
-  - NGINX Agent (not "the NGINX Agent").
+- **Don't use articles ("the", "a", or "an") in front of product names.**
+  - **Do:** NGINX Agent, NGINX One Console, NGINX Instance Manager
+  - **Don't:** the NGINX Agent, a NGINX Agent, an NGINX Agent, the NGINX One Console, a NGINX One Console, an NGINX One Console
+  - **Tip:** Always write product names without "the", "a", or "an" in front.
 - Always use the full brand name in the meta description. The meta description does not count as first mention of the product in the document.
 
 
