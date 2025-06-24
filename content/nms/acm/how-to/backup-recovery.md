@@ -142,7 +142,7 @@ To complete the instructions in this guide, you need the following:
 - Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< ref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
 
-<a name="root-access"></a>
+## Root Access {#root-access}
 
 - Root Access
 

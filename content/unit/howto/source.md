@@ -245,7 +245,7 @@ and installing]({{< relref "/unit/howto/source.md#source-bld-src" >}}) Unit on S
 <details>
 <summary>Enabling njs</summary>
 
-<a name="source-njs"></a>
+# Enabling njs {#source-njs}
 
 To build Unit with [njs](https://nginx.org/en/docs/njs/) support,
 download the `njs` code to the same parent directory as the Unit code.
@@ -282,7 +282,8 @@ the Unit code.
 
 <details>
 <summary>Enabling WebAssembly</summary>
-<a name="source-wasm"></a>
+
+## Enabling WebAssembly {#source-wasm}
 
 {{< tabs name="source-enable-webassembly" >}}
 {{% tab name="wasm-wasi-component" %}}
@@ -379,7 +380,7 @@ or support for certain features:
 {{</bootstrap-table>}}
 
 
-<a name="source-config-src-pcre"></a>
+## PCRE Configuration {#source-config-src-pcre}
 
 By default, Unit relies on the locally installed version of the [PCRE](https://www.pcre.org) library to support regular expressions in
 [routes]({{< relref "/unit/configuration.md#configuration-routes" >}});
@@ -396,7 +397,7 @@ alter this behavior:
 {{</bootstrap-table>}}
 
 
-<a name="source-config-src-njs"></a>
+## NodeJS Configuration {#source-config-src-njs}
 
 Unit also supports the use of [njs](https://nginx.org/en/docs/njs/) scripts
 in configuration; to enable this feature, use the respective option:

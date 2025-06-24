@@ -169,7 +169,7 @@ If the system asks you to provide a password when you're installing the Controll
 
 ## Controller Agent Isn't Reporting Metrics
 
-<a name="troubleshooting-metrics"></a>
+## Controller Agent Isn't Reporting Metrics {#troubleshooting-metrics}
 
 After you install and start the Controller Agent, it should begin reporting right away, pushing aggregated data to NGINX Controller at regular one-minute intervals. It takes about one minute for a new Instance to appear in the NGINX Controller user interface.
 

@@ -172,7 +172,7 @@ use the **conf_commands** object in **tls**:
 }
 ```
 
-<a name="configuration-listeners-ssl-sessions"></a>
+## TLS session settings {#configuration-listeners-ssl-sessions}
 
 The **session** object in **tls**
 configures the session settings of the listener:
