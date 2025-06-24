@@ -86,6 +86,20 @@ There are multiple ways to format text: for consistency and clarity, these are o
 
 > **Note**: The ordered notation automatically enumerates lists when built by Hugo.
 
+#### Creating custom anchors in documentation
+
+To create custom anchors (link targets) in documentation, use Hugo's Markdown header syntax rather than raw HTML. Do **not** use `<a name="...">` tags, as these are not compatible with Hugo's rendering and may cause issues with navigation and styling.
+
+**Preferred syntax:**
+
+```md
+# Header Title {#custom-anchor}
+```
+
+This creates a header with a custom anchor that can be linked to using the `#custom-anchor` fragment in URLs.
+
+> **Note:** Using Hugo's header anchor syntax ensures consistency, compatibility with Hugo's internal linking, and better maintainability. Avoid using raw HTML for anchors.
+
 ### How to format internal links
 
 Internal links should use the [ref](https://gohugo.io/methods/shortcode/ref/#article) shortcode with absolute paths that start with a forward slash (for clarity).
