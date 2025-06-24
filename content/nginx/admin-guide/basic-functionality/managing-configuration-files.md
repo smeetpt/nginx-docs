@@ -24,7 +24,7 @@ worker_processes 1;
 
 ## Feature-Specific Configuration Files
 
-To make the configuration easier to maintain, we recommend that you split it into a set of feature‑specific files stored in the <span style="white-space: nowrap;">**/etc/nginx/conf.d**</span> directory and use the [include](https://nginx.org/en/docs/ngx_core_module.html#include) directive in the main **nginx.conf** file to reference the contents of the feature‑specific files.
+To make the configuration easier to maintain, we recommend that you split it into a set of feature‑specific files stored in the `/etc/nginx/conf.d` directory and use the [include](https://nginx.org/en/docs/ngx_core_module.html#include) directive in the main **nginx.conf** file to reference the contents of the feature‑specific files.
 
 ```nginx
 include conf.d/http;
