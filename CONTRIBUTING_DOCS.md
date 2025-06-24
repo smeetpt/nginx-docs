@@ -77,6 +77,8 @@ These archetypes are adapted from some existing [templates](/templates/): please
 
 ### Basic Markdown formatting
 
+**Anchors:** To create custom anchors for headers, use the Hugo Markdown header anchor syntax: `# Header Title {#custom-anchor}`. Do not use raw HTML (e.g., `<a name="...">`) for anchors, as Hugo provides a built-in solution that is more maintainable and compatible.
+
 There are multiple ways to format text: for consistency and clarity, these are our conventions:
 
 - Bold: Two asterisks on each side - `**Bolded text**`.
