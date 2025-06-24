@@ -17,6 +17,7 @@ nd-product:
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
 
 [//]: # "Begin each document with a sentence or two explaining what the purpose of the guide is, and what high-level actions to expect. No need to adhere precisely the example text given anywhere in this template."
+[//]: # "To create a custom anchor for a header, use Hugo's markdown syntax: `## Header title {#custom-anchor}` instead of HTML `<a name=...>` tags."
 
 This guide explains how to <X> with <Y>. In involves the use of <A>, <B> and <C>, demonstrating how <X> works with an example <Z>.
 

@@ -29,6 +29,8 @@ It is an example of a <other concept>, and is closely related to <third concept>
 
 ## Use cases
 
+[//]: # "To create a custom anchor for a header, use Hugo's syntax: '# Header title {#custom-anchor-name}'"
+
 [//]: # "Name the individual use case sections after the actual use case itself, e.g 'Route traffic between applications'"
 
 ### Use case 1

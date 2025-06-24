@@ -17,6 +17,14 @@ Briefly describe the goal of this document, that is, what the user will learn or
 
 Introduce and explain any new concepts the user may need to understand before proceeding.
 
+{{< note >}}
+To create custom anchors for headers in Hugo, use the following syntax:
+
+    # Header title {#custom-anchor-name}
+
+This replaces the need for HTML anchor tags like `<a name="...">`.
+{{</note>}}
+
 ## Before You Begin
 
 To complete the instructions in this guide, you need the following:

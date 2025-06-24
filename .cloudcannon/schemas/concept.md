@@ -15,6 +15,16 @@ tags: [ "docs" ]
 
 Briefly describe the goal of this document, that is, what the user will learn or accomplish by reading what follows.
 
+### Note on Custom Anchors
+
+To create a custom anchor for a header in Hugo, use the following syntax:
+
+```
+## Header title {#custom-anchor-name}
+```
+
+This will allow you to link directly to that section using `#custom-anchor-name` in the URL.
+
 ## Concept 1 - format as a noun phrase
 
 This is where you explain the concept. Provide information that will help the user understand what the element/feature is and how it fits into the overall product.
