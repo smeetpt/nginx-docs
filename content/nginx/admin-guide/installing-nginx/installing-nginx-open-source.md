@@ -981,34 +981,53 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
 
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
-  ```shell
-  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./Configure darwin64-x86_64-cc --prefix=/usr
-  make
-  sudo make install
-  ```
+  > **Note:** The OpenSSL build process requires selecting the correct configuration target for your platform and architecture. Using the wrong target (e.g., building for Intel/x86_64 on Apple Silicon/ARM64) will result in build errors. For a full list of supported targets and detailed instructions, see the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md) (especially the section on "Selecting the correct target").
 
-  Example for Ubuntu and Debian:
-  ```shell
-  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
-  make -j$(nproc)
-  sudo make install
-  ```
+  #### MacOS
+  - **For MacOS (Intel/x86_64):**
+    ```shell
+    wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+    tar -zxf openssl-3.0.13.tar.gz
+    cd openssl-3.0.13
+    ./Configure darwin64-x86_64-cc --prefix=/usr
+    make
+    sudo make install
+    ```
+    This command is for Intel-based Macs only.
 
-  Example for RHEL-based:
-  ```shell
-  curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
-  make -j$(nproc)
-  sudo make install
-  ```
+  - **For MacOS (Apple Silicon/ARM64, e.g., M1/M2):**
+    ```shell
+    wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+    tar -zxf openssl-3.0.13.tar.gz
+    cd openssl-3.0.13
+    ./Configure darwin64-arm64-cc --prefix=/usr
+    make
+    sudo make install
+    ```
+    Use this command if you are on an Apple Silicon Mac (ARM64). If you are unsure of your architecture, run `uname -m` (should return `arm64` for Apple Silicon).
+
+  #### Linux
+  - **For most Linux distributions (x86_64/ARM64):**
+    ```shell
+    wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
+    tar -zxf openssl-3.0.13.tar.gz
+    cd openssl-3.0.13
+    ./config --prefix=/usr/local --openssldir=/usr/local/ssl
+    make -j$(nproc)
+    sudo make install
+    ```
+    The `./config` script auto-detects your platform. For advanced or cross-compilation scenarios, consult the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md) and use `./Configure <target>` as appropriate.
+
+  #### Windows/WSL
+  - **For Windows or Windows Subsystem for Linux (WSL):**
+    Building OpenSSL on Windows requires different steps and toolchains (e.g., Visual Studio, Perl, and NASM). Refer to the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md#windows) for detailed Windows build instructions and supported targets.
+
+  > **Tip:** To see all available configuration targets, run:
+  > ```shell
+  > ./Configure LIST
+  > ```
+  > and consult the [Selecting the correct target](https://github.com/openssl/openssl/blob/master/INSTALL.md#selecting-the-correct-target) section in the OpenSSL documentation.
+
 
 ### Download the sources {#sources_download}
 
