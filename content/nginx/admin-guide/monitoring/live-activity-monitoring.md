@@ -19,11 +19,9 @@ This article describes how to configure and use runtime monitoring services in N
 
 NGINX Plus provides various monitoring tools for your server infrastructure:
 
-- the interactive Dashboard page available since NGINX Plus [Release 9]({{< ref "nginx/releases.md#r9" >}}) - a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
+- The interactive Dashboard page—a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
 
-- NGINX REST API available since NGINX Plus [Release 14]({{< ref "nginx/releases.md#r14" >}}) - an interface that can obtain extended status information, reset statistics, manage upstream servers on-the-fly, and manage key-value store. With the API you can connect NGINX Plus status information with third-party tools that support the JSON interface, for example, NewRelic or your own dashboard.
-
-    > **Note**: Prior to NGINX Plus [R14]({{< ref "nginx/releases.md#r14" >}}), gathering statistics and management of upstream servers in the Dashboard was performed with the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules. Now the extended [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules are superseded by the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module. Starting from R16, the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules will be removed and completely superseded with the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module.
+- The NGINX REST API—an interface that provides extended status information, allows you to reset statistics, manage upstream servers on-the-fly, and manage the key-value store. With the API, you can connect NGINX Plus status information with third-party tools that support the JSON interface, for example, NewRelic or your own dashboard.
 
 * * *
 
@@ -34,7 +32,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 <span id="prereq"></span>
 ## Prerequisites
 
-- NGINX Plus [R14]({{< ref "nginx/releases.md#r14" >}}) and later for NGINX Plus REST API and the Dashboard
+- NGINX Plus (current supported releases) with REST API and the Dashboard enabled
 - Data for statistics (see [Gathering Data to Appear in Statistics](#status_data))
 
 <span id="status_data"></span>
@@ -42,7 +40,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 In order to collect data from virtual servers, upstream server groups, or cache zones, you will need to *enable shared memory zones* for the objects you want to collect data for. A shared memory zone stores configuration and runtime state information referenced by NGINX worker processes.
 
-- To make [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) server to appear in statistics, specify the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive. The same zone name can be specified more than once for many [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) blocks. Since [R19]({{< ref "nginx/releases.md#r19" >}}), the [status_zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive can also be specified for [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) blocks - in this case, the statistics will be aggregated separately for servers and locations in the Dashboard:
+- To make [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) servers appear in statistics, specify the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive. The same zone name can be specified more than once for many [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) blocks. The [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive can also be specified for [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) blocks—in this case, the statistics will be aggregated separately for servers and locations in the Dashboard:
 
     ```nginx
     server {
@@ -216,8 +214,7 @@ To enable the API:
     }
     ```
 
-- As an option you can try the [Swagger UI](#swagger_enable) - an interactive documentation tool for the API specification supplied in a OpenAPI YAML file and used with NGINX Plus.
-Download the Swagger UI and the OpenAPI YAML specification, specify a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) for them, for example, */swagger-ui*, the path to its files with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html* and limit access to local networks with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives. See [The Swagger UI](#the-swagger-ui) section for details.
+- As an option you can try the [Swagger UI](#swagger_enable)—an interactive documentation tool for the API specification supplied in an OpenAPI YAML file and used with NGINX Plus. Download the Swagger UI and the OpenAPI YAML specification, specify a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) for them (for example, */swagger-ui*), the path to its files with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive (for example, */usr/share/nginx/html*), and limit access to local networks with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives. See [The Swagger UI](#the-swagger-ui) section for details.
 
     ```nginx
     http {
@@ -502,9 +499,7 @@ NGINX Plus allows you to explore the REST API documentation and send API command
 
 The main purpose of Swagger UI and the YAML OpenAPI spec is to document and visualize NGINX API commands. For security reasons it is not recommended using it in a production environment.
 
-Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagger UI was shipped together with NGINX Plus packages. Since NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}), the OpenAPI YAML specification and the Swagger UI is published separately, below.
-
-Alternatively, copy the link to the appropriate YAML file, and import into your preferred OpenAPI v2 tool.
+The OpenAPI YAML specification and the Swagger UI are published separately from NGINX Plus packages. Alternatively, copy the link to the appropriate YAML file, and import it into your preferred OpenAPI v2 tool.
 
 
 <span id="swagger_enable"></span>
@@ -551,8 +546,7 @@ To enable the Swagger UI:
     }
     ```
 
-   For NGINX Plus Release 25 and earlier, the Swagger UI is located in the root directory specified by the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html*.
-
+   
 
 3. Restrict access to this location only from a local network with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
 
@@ -578,7 +572,7 @@ To enable the Swagger UI:
 <span id="swagger_disable"></span>
 ### Disabling the Swagger UI
 
-In NGINX Plus Release 25 and earlier, the Swagger UI is a part of NGINX Plus package and is installed by default. For [security reasons](https://support.f5.com/csp/article/K73710094), you may want to block access to the Swagger UI. One of the ways to do it is to [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) the `404` status code in response to the URL that matches the `/swagger-ui` location:
+For [security reasons](https://support.f5.com/csp/article/K73710094), you may want to block access to the Swagger UI. One of the ways to do it is to [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) the `404` status code in response to the URL that matches the `/swagger-ui` location:
 
 ```nginx
 location /swagger-ui {
