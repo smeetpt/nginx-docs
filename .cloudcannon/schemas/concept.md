@@ -1,4 +1,5 @@
 ---
+# Do not use inline HTML (e.g., <span> tags) for styling. Use Markdown formatting (e.g., **bold**, `inline code`, _italics_) instead.
 title: 
 # Remove or change to false to turn off the right-hand in-page ToC
 toc: true
