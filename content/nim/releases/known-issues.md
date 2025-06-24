@@ -108,12 +108,12 @@ In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy fr
 
 #### Workaround
 
-1. Download the NGINX repository certificate and key:
+1. Download NGINX repository certificate and key:
    - Log in to [MyF5](https://account.f5.com/myf5).
    - Go to **My Products and Plans > Subscriptions**.
    - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
 
-2. Upload the certificate and key using the NGINX Instance Manager web interface:
+2. Upload certificate and key using NGINX Instance Manager web interface:
    - Go to **Settings > NGINX Repo Connect**.
    - Select **Add Certificate**.
    - Choose **Select PEM files** or **Manual entry**.
@@ -255,7 +255,7 @@ If NGINX Agent is configured to monitor NGINX App Protect before App Protect is 
 
 #### Workaround
 
-Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_publication" as "false". Then restart the nginx-agent process running `sudo systemctl restart nginx-agent`.
+Edit "/etc/nginx-agent/nginx-agent.conf" and configure "precompiled_publication" as "false". Then restart nginx-agent by running `sudo systemctl restart nginx-agent`.
 
 ---
 
@@ -279,7 +279,7 @@ After adding a license, some NGINX Management Suite features might be disabled, 
 
 #### Workaround
 
-Restart NGINX Management Suite to make all the features available for use. To restart NGINX Management Suite, open a terminal on the host and run the command:
+Restart NGINX Management Suite to make all features available for use. To restart NGINX Management Suite, open a terminal on the host and run the command:
 
 ```shell
 sudo systemctl restart nms
@@ -742,7 +742,7 @@ This error can occur when there is a desyncronization between the NGINX Agent an
 
 #### Workaround
 
-Restart the NGINX Agent:
+Restart NGINX Agent:
 
 ``` bash
 sudo systemctl restart nginx-agent
