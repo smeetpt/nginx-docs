@@ -13,6 +13,7 @@ nd-product:
 ---
 
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
+[//]: # "Do NOT use inline HTML (such as <span> tags) for styling. Use Markdown formatting (e.g., **bold**, _italics_, inline code) for all styling and emphasis."
 [//]: # "Use underscores for _italics_, and double asterisks for **bold**."
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
 
