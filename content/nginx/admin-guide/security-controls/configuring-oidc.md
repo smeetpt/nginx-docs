@@ -336,18 +336,7 @@ Upon successful sign-in, the IdP redirects you back to NGINX Plus, and you will 
 
 ## Glossary {#glossary}
 
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Term                    | Description                                        |
-|-------------------------|----------------------------------------------------|
-| Identity Provider (IdP) | A service that authenticates users and verifies their identity for client applications. |
-| Protected Resource      | A resource that is hosted by the resource server and requires an access token to be accessed. |
-| Relying Party (RP)      | A client service required to verify user identity. |
-| JSON Web Token (JWT)    | An open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. |
-| ID Token                | Specific to OIDC, the primary use of the token in JWT format is to provide information about the authentication operation's outcome. |
-| Access Token            | Defined in OAuth2, this (optional) short lifetime token provides access to specific user resources as defined in the scope values in the request to the authorization server (can be a JSON token as well). |
-| Refresh Token           | Coming from OAuth2 specs, the token is usually long-lived and may be used to obtain new access tokens. |
-{{</bootstrap-table>}}
+For definitions of terms used in this guide, see the unified NGINX glossary at [NGINX One Glossary]({{< ref "/nginx-one/glossary.md" >}}).
 
 
 ## See Also {#see-also}
