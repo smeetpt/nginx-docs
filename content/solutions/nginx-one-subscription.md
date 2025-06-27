@@ -29,18 +29,18 @@ You can deploy these components in various environments:
 
 ### Management and Monitoring
 
-Monitor and manage your NGINX data planes through the NGINX One service in F5 Distributed Cloud.
+Monitor and manage your NGINX data planes through NGINX One service in F5 Distributed Cloud.
 
 ## Access to NGINX One
 
-After your NGINX One subscription is activated, the contact provided to F5 will receive an email invitation to MyF5 and your tenant in F5 Distributed Cloud. Within [F5 Distributed Cloud](https://console.ves.volterra.io/), you can access the NGINX One Cloud Console and explore other F5 Distributed Cloud services. In [MyF5](https://my.f5.com/), you’ll find all the licensing and fulfillment objects needed to access and deploy NGINX One software components.
+After your NGINX One subscription is activated, contact provided to F5 will receive an email invitation to MyF5 and your tenant in F5 Distributed Cloud. Within [F5 Distributed Cloud](https://console.ves.volterra.io/), you can access NGINX One Console and explore other F5 Distributed Cloud services. In [MyF5](https://my.f5.com/), you’ll find all the licensing and fulfillment objects needed to access and deploy NGINX One software components.
 
 ## NGINX One in F5 Distributed Cloud
 
 Manage configurations, monitor your infrastructure, address security vulnerabilities, and assess the health of your NGINX fleet—all from a single console in F5 Distributed Cloud.
 
-- [Learn more about NGINX One Cloud Console](https://docs.nginx.com/nginx-one/about/)
-- [Get started with NGINX One Cloud Console](https://docs.nginx.com/nginx-one/getting-started/)
+- [Learn more about NGINX One Console](https://docs.nginx.com/nginx-one/about/)
+- [Get started with NGINX One Console](https://docs.nginx.com/nginx-one/getting-started/)
 - [Log in to F5 Distributed Cloud](https://console.ves.volterra.io/)
 
 ## F5 NGINX Plus
