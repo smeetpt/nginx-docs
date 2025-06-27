@@ -502,7 +502,7 @@ NGINX Plus allows you to explore the REST API documentation and send API command
 
 The main purpose of Swagger UI and the YAML OpenAPI spec is to document and visualize NGINX API commands. For security reasons it is not recommended using it in a production environment.
 
-Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagger UI was shipped together with NGINX Plus packages. Since NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}), the OpenAPI YAML specification and the Swagger UI is published separately, below.
+The OpenAPI YAML specification and Swagger UI are published separately from NGINX Plus packages.
 
 Alternatively, copy the link to the appropriate YAML file, and import into your preferred OpenAPI v2 tool.
 
