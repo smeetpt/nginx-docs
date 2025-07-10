@@ -465,6 +465,36 @@ To generate the necessary certificates, follow these steps. You can modify these
 
 ---
 
+## Certificate Revocation Checking (CRL/OCSP)
+
+{{< call-out "note" "Best practice: Enable certificate revocation checking" >}}
+To maximize the security of SSL/TLS connections between NGINX Instance Manager and NGINX instances, we recommend enabling certificate revocation checking. This ensures that certificates which have been revoked (for example, due to compromise or mis-issuance) are not accepted, reducing the risk of unauthorized access.
+
+Certificate revocation can be checked using:
+- **OCSP (Online Certificate Status Protocol):** Allows real-time validation of certificate status with the issuing Certificate Authority.
+- **CRL (Certificate Revocation List):** Uses a periodically updated list of revoked certificates published by the CA.
+
+**Example: Enabling OCSP validation in NGINX**
+
+Add the following directives to your SSL server block to enable OCSP checking:
+
+```nginx
+ssl_stapling on;
+ssl_stapling_verify on;
+ssl_trusted_certificate /etc/nms/certs/ca.pem;
+resolver 8.8.8.8 1.1.1.1 valid=300s;
+resolver_timeout 5s;
+```
+
+- `ssl_stapling on;` enables OCSP stapling.
+- `ssl_stapling_verify on;` ensures the OCSP response is verified.
+- `ssl_trusted_certificate` should point to your CA certificate chain.
+- `resolver` and `resolver_timeout` are required for OCSP to function.
+
+For more advanced revocation checking (including CRL), see the [NGINX SSL Termination guide](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/#enabling-ocsp-stapling).
+
+{{< /call-out >}}
+
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
 {{<call-out "note" "Version requirements" "">}}
