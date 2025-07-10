@@ -11,6 +11,10 @@ type:
 
 ## About certificates {#about-certificates}
 
+{{< call-out "note" "Best Practice: Enable Certificate Revocation Checking" >}}
+For maximum security, ensure that certificate revocation checking (using OCSP or Certificate Revocation Lists) is enabled on your NGINX instances when using managed certificates. This helps prevent the use of revoked certificates. For details on how to configure revocation checking, see the [Secure Traffic guide](https://docs.nginx.com/nginx-instance-manager/system-configuration/secure-traffic/).
+{{< /call-out >}}
+
 You can add certificates to **F5 NGINX Instance Manager** using the web interface or the REST API. Certificates in NGINX Instance Manager are stored in PEM format in an internal secret store. They can be published to NGINX instances, which use certificates to encrypt and decrypt requests and responses.
 
 NGINX Instance Manager can import the following types of certificates:
