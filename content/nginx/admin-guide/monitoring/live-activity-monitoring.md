@@ -19,11 +19,11 @@ This article describes how to configure and use runtime monitoring services in N
 
 NGINX Plus provides various monitoring tools for your server infrastructure:
 
-- the interactive Dashboard page available since NGINX Plus [Release 9]({{< ref "nginx/releases.md#r9" >}}) - a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
+- the interactive Dashboard page - a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
 
-- NGINX REST API available since NGINX Plus [Release 14]({{< ref "nginx/releases.md#r14" >}}) - an interface that can obtain extended status information, reset statistics, manage upstream servers on-the-fly, and manage key-value store. With the API you can connect NGINX Plus status information with third-party tools that support the JSON interface, for example, NewRelic or your own dashboard.
+- The NGINX REST API provides extended status information, reset statistics, manage upstream servers on-the-fly, and manage key-value store. With the API you can connect NGINX Plus status information with third-party tools that support the JSON interface, for example, NewRelic or your own dashboard.
 
-    > **Note**: Prior to NGINX Plus [R14]({{< ref "nginx/releases.md#r14" >}}), gathering statistics and management of upstream servers in the Dashboard was performed with the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules. Now the extended [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules are superseded by the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module. Starting from R16, the [status](https://nginx.org/en/docs/http/ngx_http_status_module.html#status) and [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules will be removed and completely superseded with the [api](https://nginx.org/en/docs/http/ngx_http_api_module.html) module.
+    > **Note**: The api module replaces the older status and upstream_conf modules for monitoring and management.
 
 * * *
 
@@ -502,7 +502,7 @@ NGINX Plus allows you to explore the REST API documentation and send API command
 
 The main purpose of Swagger UI and the YAML OpenAPI spec is to document and visualize NGINX API commands. For security reasons it is not recommended using it in a production environment.
 
-Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagger UI was shipped together with NGINX Plus packages. Since NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}), the OpenAPI YAML specification and the Swagger UI is published separately, below.
+The Swagger UI is no longer bundled with NGINX Plus; it is published separately, below.
 
 Alternatively, copy the link to the appropriate YAML file, and import into your preferred OpenAPI v2 tool.
 
