@@ -43,7 +43,7 @@ If you want to access the stub status externally (without `kubectl port-forward`
 Prerequisites:
 
 1. The dashboard is enabled by default. Ensure that the `nginx-status` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) is not set to false.
-1. The dashboard is available on port 8080 by default. It is customizable by the `nginx-status-port` command-line argument. If yours is not on 8080, modify the kubectl proxy command below.
+1. The dashboard is available on port 8080 by default. It is customizable by the `nginx-status-port` command-line argument.
 
 To access the dashboard:
 
