@@ -8,13 +8,16 @@ type:
 - reference
 ---
 
-This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
+This glossary defines terms used across all NGINX products, including F5 NGINX One Console, F5 Distributed Cloud, and other NGINX-related technologies.
 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Term        | Definition |
 |-------------|-------------|
 | **Config Sync Group** | A group of NGINX systems (or instances) with identical configurations. They may also share the same certificates. However, the instances in a Config Sync Group could belong to different systems and even different clusters. For more information, see this explanation of [Important considerations]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md#important-considerations" >}}) |
+| **OIDC** | OpenID Connect (OIDC) is an authentication layer on top of OAuth 2.0, often used in NGINX for secure user authentication. |
+| **Ingress Controller** | An NGINX component that manages external access to services in a Kubernetes cluster, typically HTTP. |
+| **F5 Glossary** | For additional terms related to F5 technologies, refer to the [F5 glossary](https://www.f5.com/glossary). |
 | **Data Plane** | The data plane is the part of a network architecture that carries user traffic. It handles tasks like forwarding data packets between devices and managing network communication. In the context of NGINX, the data plane is responsible for tasks such as load balancing, caching, and serving web content. |
 | **Instance** | An instance is an individual system with NGINX installed. You can group the instances of your choice in a Config Sync Group. When you add an instance to NGINX One, you need to use a data plane key. |
 | **Namespace** | In F5 Distributed Cloud, a namespace groups a tenant’s configuration objects, similar to administrative domains. Every object in a namespace must have a unique name, and each namespace must be unique to its tenant. This setup ensures isolation, preventing cross-referencing of objects between namespaces. You'll see the namespace in the NGINX One Console URL as `/namespaces/<namespace name>/` |
