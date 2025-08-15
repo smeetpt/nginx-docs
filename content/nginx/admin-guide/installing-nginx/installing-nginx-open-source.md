@@ -981,14 +981,28 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
 
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
+  Note: OpenSSL build targets and Configure options are platform- and architecture-specific. Refer to OpenSSL’s INSTALL.md to determine the correct target for your system: https://github.com/openssl/openssl/blob/master/INSTALL.md
+
+  Example for macOS (Intel/x86_64):
   ```shell
-  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
   tar -zxf openssl-3.0.13.tar.gz
   cd openssl-3.0.13
   ./Configure darwin64-x86_64-cc --prefix=/usr
   make
   sudo make install
   ```
+
+  Example for macOS (Apple Silicon/arm64):
+  ```shell
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
+  tar -zxf openssl-3.0.13.tar.gz
+  cd openssl-3.0.13
+  ./Configure darwin64-arm64-cc --prefix=/usr
+  make
+  sudo make install
+  ```
+  Note: If you prefer not to build OpenSSL yourself, you can install OpenSSL via Homebrew and point NGINX to it using --with-cc-opt and --with-ld-opt to include Homebrew’s include and lib paths.
 
   Example for Ubuntu and Debian:
   ```shell
@@ -1008,6 +1022,15 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
   ./config --prefix=/usr/local --openssldir=/usr/local/ssl
   make -j$(nproc)
   sudo make install
+  ```
+
+  Windows / WSL:
+  - On Windows, we recommend using WSL2 and following the Linux instructions above.
+  - For native Windows builds with MSVC, see the OpenSSL INSTALL.md. A typical flow is:
+  ```shell
+  perl Configure VC-WIN64A
+  nmake
+  nmake install
   ```
 
 ### Download the sources {#sources_download}
