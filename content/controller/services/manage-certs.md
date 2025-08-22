@@ -56,6 +56,38 @@ To view, edit, and delete Certs:
 6. To edit the Cert, select **Edit Config** on the **Quick Actions** menu.
 7. To delete the Cert, select **Delete Config** on the **Quick Actions** menu.
 
+## Certificate Revocation Checking
+
+To ensure that revoked certificates are not accepted, you can configure your systems to use Certificate Revocation Lists (CRLs) and Online Certificate Status Protocol (OCSP).
+
+### Using Certificate Revocation Lists (CRLs)
+
+CRLs are lists of certificates that have been revoked by the Certificate Authority (CA) before their scheduled expiration date. To configure CRL checking:
+
+1. Obtain the CRL from your CA.
+2. Configure your NGINX instance to use the CRL by adding the following directive to your configuration:
+   ```
+   ssl_crl /path/to/your/crl.pem;
+   ssl_verify_client on;
+   ```
+3. Ensure that the CRL is regularly updated to reflect the latest revocations.
+
+### Using Online Certificate Status Protocol (OCSP)
+
+OCSP allows for real-time verification of a certificate's revocation status. To enable OCSP:
+
+1. Ensure your certificate includes the OCSP URI.
+2. Add the following directives to your NGINX configuration:
+   ```
+   ssl_stapling on;
+   ssl_stapling_verify on;
+   resolver 8.8.8.8 8.8.4.4 valid=300s;
+   resolver_timeout 5s;
+   ```
+3. Test your configuration to ensure OCSP responses are being correctly processed.
+
+By implementing CRL and OCSP, you can enhance the security of your SSL/TLS configurations by ensuring that revoked certificates are not mistakenly trusted.
+
 ## What's Next
 
 - [Create an app]({{< ref "/controller/app-delivery/manage-apps.md" >}})
