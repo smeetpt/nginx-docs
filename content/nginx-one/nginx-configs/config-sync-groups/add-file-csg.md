@@ -20,7 +20,7 @@ Before you add files in your configuration, ensure:
 
 ## Important considerations
 
-This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< ref "/nginx-one/glossary.md" >}}) of that Config Sync Group.
+This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< ref "content/nic/glossary.md" >}}) of that Config Sync Group.
 
 ## Add a file
 
