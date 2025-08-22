@@ -22,7 +22,7 @@ This guide explains how to import or export a Staged Configuration to your NGINX
 
 ## Before you start
 
-Before you import or export a Staged Configuration to NGINX One Console, ensure:
+Before you import or export a Staged Configuration to the NGINX One Console, ensure:
 
 - You have an NGINX One Console account with staged configuration permissions.
 
@@ -56,7 +56,7 @@ To import a Staged Configuration from your system to the NGINX One Console, you 
   tar czvf /etc/nginx for-import.tar.gz
   ```
 
-You would then import that file to the NGINX One Console. To do so, follow these steps:
+You would then import that file to NGINX One Console. To do so, follow these steps:
 
 1. On the left menu, select **Staged Configurations**.
 1. Select **Add Staged Configuration**.
@@ -69,7 +69,7 @@ You would then import that file to the NGINX One Console. To do so, follow these
 
 ## Export a Staged Configuration
 
-You can export a Staged Configuration from the NGINX One Console, as a download, to your system. To do so, follow these steps:
+You can export a Staged Configuration from NGINX One Console, as a download, to your system. To do so, follow these steps:
 
 1. On the left menu, select **Staged Configurations**.
 1. Select the Staged Configuration you want to export. 
