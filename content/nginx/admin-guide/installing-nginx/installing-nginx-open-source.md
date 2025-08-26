@@ -990,7 +990,7 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
   sudo make install
   ```
 
-  Example for Ubuntu and Debian:
+  Example for Ubuntu and Debian (all architectures):
   ```shell
   wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
   tar -zxf openssl-3.0.13.tar.gz
@@ -999,6 +999,8 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
   make -j$(nproc)
   sudo make install
   ```
+
+  Note: The `./config` command is generally suitable for most Linux distributions and architectures, including ARM. For specific architecture optimizations, refer to the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md).
 
   Example for RHEL-based:
   ```shell
