@@ -12,7 +12,7 @@ product: NGINX One
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 
-This guide explains how to edit the configuration of an existing **Instance** in your NGINX One Console.
+This guide explains how to edit the configuration of an existing **Instance** in NGINX One Console.
 
 To view and edit an NGINX configuration, follow these steps:
 
