@@ -14,7 +14,7 @@ See the list of supported Operating Systems and architectures in the [Technical 
 
 ### 🌟 Highlights
 
-- The source code for the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/) has moved to the [NGINX Documentation](https://github.com/nginx/documentation/) repository. We invite you to [contribute](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md), improve the Agent docs and report any issues you find in the documentation repository.
+- Source code for [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/) has moved to [NGINX Documentation](https://github.com/nginx/documentation/) repository. We invite you to [contribute](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md), improve the Agent docs and report any issues you find in the documentation repository.
 
 ### 🐛 Bug Fixes
 
