@@ -905,7 +905,7 @@ server {
         proxy_set_header Connection $connection_upgrade;
     }
 
-    # Secured access to the NGINX Plus API
+    # Secured access to NGINX Plus API
     location /api {
         api write=on;
         allow 127.0.0.1; # Permit access from localhost
