@@ -29,7 +29,7 @@ Refer to the [Metrics]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#nginx-pl
 
 ### Prometheus Metrics
 
-The NGINX Service Mesh sidecar exposes the following metrics in Prometheus format via the `/metrics` path on port 8887:
+The NGINX Service Mesh sidecar exposes the following metrics in Prometheus format via the `/metrics` path on port 8887. These metrics can be integrated into existing monitoring solutions like Grafana to provide real-time insights into application performance and health. By analyzing these metrics, you can identify bottlenecks, monitor traffic patterns, and ensure that your applications are running smoothly.
 
 - [NGINX Plus metrics](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/#exported-metrics).
 - `upstream_server_response_latency_ms`: a histogram of upstream server response latencies in milliseconds.
@@ -37,9 +37,9 @@ The response time is the time from when NGINX establishes a connection to an ups
 
 All metrics have the namespace `nginxplus`, for example `nginxplus_http_requests_total` and `nginxplus_upstream_server_response_latency_ms_count`.
 
-#### Examples
+#### Examples and Use Cases
 
-This section includes a set of example metrics that you may plug into your existing Prometheus-based tooling to gain insights into the traffic flowing through your applications.
+This section includes a set of example metrics and use cases that you may plug into your existing Prometheus-based tooling to gain insights into the traffic flowing through your applications. These examples demonstrate how to monitor request rates, response codes, and latency, which are crucial for understanding application performance and user experience.
 
 ##### HTTP
 
@@ -48,12 +48,14 @@ This section includes a set of example metrics that you may plug into your exist
   ```promQL
   irate(nginxplus_http_requests_total[30s])
   ```
+  This metric helps in understanding the current load on your application and can be used to trigger alerts if the request rate exceeds expected thresholds.
 
 - View unsuccessful response codes of your applications:
 
   ```promQL
   nginxplus_upstream_server_responses{code=~"3xx|4xx|5xx"}
   ```
+  Monitoring these response codes helps in identifying issues with your application, such as client errors (4xx) or server errors (5xx), allowing for quick troubleshooting and resolution.
 
   This can be used to form more complex queries such as current success rate:
 
@@ -68,6 +70,7 @@ This section includes a set of example metrics that you may plug into your exist
   ```promQL
   irate(nginxplus_stream_upstream_server_sent[30s])
   ```
+  This metric is useful for understanding the data flow and bandwidth usage, which can help in capacity planning and ensuring that your infrastructure can handle peak loads.
 
 - You can also see the total number of connections made:
 
