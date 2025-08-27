@@ -132,6 +132,22 @@ Make sure to [add the `syslog` settings]({{< ref "/amplify/nginx-amplify-agent/i
 
 By default, NGINX Amplify Agent will try to find and watch all the `access.log` files described in the NGINX configuration. If there are multiple log files where the same request is logged, the metrics may get counted more than once.
 
+## Understanding and Troubleshooting Metrics Collection
+
+NGINX Amplify Agent collects various metrics from your NGINX instances, such as request counts, response times, and error rates. These metrics are crucial for monitoring the performance and health of your NGINX servers.
+
+### Example Use Case
+
+Consider a scenario where you want to monitor the number of 404 errors on your server. NGINX Amplify Agent can be configured to track these errors by analyzing the `access.log` files. You can set up alerts in the Amplify UI to notify you when the number of 404 errors exceeds a certain threshold.
+
+### Troubleshooting Tips
+
+- **Metrics Not Appearing:** Ensure that the NGINX Amplify Agent is running and properly configured to access the NGINX log files. Check the `agent.log` for any error messages related to log file access.
+- **Duplicate Metrics:** If you notice duplicate metrics, verify that the same log file is not being monitored multiple times. Use the `exclude_logs` option to prevent specific log files from being included in the metrics collection.
+- **Incorrect Metrics:** Ensure that the NGINX configuration is correct and that the log format matches what the Amplify Agent expects. Adjust the log format if necessary to ensure accurate metrics collection.
+
+These steps can help ensure that your metrics are accurately collected and reported, providing valuable insights into your NGINX server's performance.
+
 To exclude specific NGINX log files from the metric collection, add an exclusion to the `/etc/amplify-agent/agent.conf` as in the following example:
 
 ```nginx
