@@ -28,7 +28,7 @@ The second option explicitly tells NGINX Amplify Agent where to look for an NGIN
 
 ## Changing the API Key
 
-When you install NGINX Amplify Agent for the first time using the procedure above, your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, please edit the following section in `agent.conf` accordingly:
+When you install NGINX Amplify Agent for the first time using the procedure above, your API key is written to the `agent.conf` file automatically. It's important to keep your API key secure and update it if you suspect it has been compromised. To change the API key, edit the following section in `agent.conf`: If you ever need to change the API key, please edit the following section in `agent.conf` accordingly:
 
 ```nginx
 [credentials]
@@ -62,7 +62,7 @@ Alternatively, you can define an "alias" for the host in the UI (see the [Graphs
 
 ## Configuring the URL for stub_status or Status API
 
-When NGINX Amplify Agent finds a running NGINX instance, it automatically detects the [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) or the NGINX Plus [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) locations from the NGINX configuration.
+When NGINX Amplify Agent finds a running NGINX instance, it automatically detects the [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) or the NGINX Plus [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) locations from the NGINX configuration. For accurate metrics, ensure that these URLs are accessible and correctly configured in your NGINX setup.
 
 To override the *stub_status* URI/URL, use the `stub_status` configuration option.
 
@@ -127,6 +127,22 @@ service amplify-agent restart
 ```
 
 Make sure to [add the `syslog` settings]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-syslog" >}}) to your NGINX configuration as well.
+
+## Best Practices for Optimizing Metrics Collection
+
+To ensure optimal metrics collection with NGINX Amplify Agent, consider the following best practices:
+
+1. **Consistent User IDs**: Ensure that both NGINX Amplify Agent and NGINX instances use the same user ID. This consistency is crucial for accurate metrics collection.
+
+2. **API Key Management**: Regularly update and manage your API keys to maintain secure and uninterrupted data flow.
+
+3. **Hostname Configuration**: Always define a valid hostname in the `agent.conf` file. Avoid using default hostnames like `localhost` to prevent monitoring issues.
+
+4. **Log File Management**: Exclude unnecessary log files from metrics collection to avoid duplicate data. Use the `exclude_logs` option in `agent.conf` to specify which logs to ignore.
+
+5. **Proxy Configuration**: If operating in a restricted network environment, configure a proxy in `agent.conf` to ensure the agent can report metrics to Amplify.
+
+6. **Log Level Settings**: Use the `DEBUG` log level sparingly, as it can quickly increase log file size. Revert to `INFO` level after debugging.
 
 ## Excluding Certain NGINX Log Files
 
