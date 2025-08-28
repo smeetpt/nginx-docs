@@ -12,7 +12,7 @@ F5 NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf
 
 NGINX Amplify Agent will drop *root* privileges on startup. By default, it will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`).
 
-NGINX Amplify Agent and the running NGINX instances need to use the same user ID for NGINX Amplify Agent to collect all NGINX metrics properly.
+NGINX Amplify Agent and the running NGINX instances need to use the same user ID for NGINX Amplify Agent to collect all NGINX metrics properly. For example, if the NGINX server is running under the user 'www-data', ensure that the Amplify Agent is configured to use the same user ID. This alignment is crucial for accurate metric collection, as mismatched user IDs can lead to incomplete data capture or permission issues.
 
 If you would like to manually specify the user ID that NGINX Amplify Agent should use for its effective user ID, there's a specialized section in `/etc/amplify-agent/agent.conf` for that:
 
@@ -28,7 +28,7 @@ The second option explicitly tells NGINX Amplify Agent where to look for an NGIN
 
 ## Changing the API Key
 
-When you install NGINX Amplify Agent for the first time using the procedure above, your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, please edit the following section in `agent.conf` accordingly:
+When you install NGINX Amplify Agent for the first time using the procedure above, your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, please edit the following section in `agent.conf` accordingly. Changing the API key might be necessary if you regenerate it for security reasons or if you are switching to a different Amplify account. Ensure that the new API key is valid and corresponds to the correct account to maintain uninterrupted data reporting:
 
 ```nginx
 [credentials]
@@ -132,7 +132,7 @@ Make sure to [add the `syslog` settings]({{< ref "/amplify/nginx-amplify-agent/i
 
 By default, NGINX Amplify Agent will try to find and watch all the `access.log` files described in the NGINX configuration. If there are multiple log files where the same request is logged, the metrics may get counted more than once.
 
-To exclude specific NGINX log files from the metric collection, add an exclusion to the `/etc/amplify-agent/agent.conf` as in the following example:
+To exclude specific NGINX log files from the metric collection, add an exclusion to the `/etc/amplify-agent/agent.conf` as in the following example. This is particularly useful in environments where multiple log files might duplicate entries, leading to inflated metrics. By specifying exclusions, you can ensure that only relevant log data is collected, improving the accuracy of your metrics:
 
 ```nginx
 [nginx]
@@ -143,7 +143,7 @@ exclude_logs=/var/log/nginx/app1/*,access-app1-*.log,sender1-*.log
 
 If your system is in a DMZ environment without direct access to the Internet, the only way for NGINX Amplify Agent to report collected metrics to Amplify is through a proxy.
 
-NGINX Amplify Agent will use the usual environment variables common on Linux systems (e.g. `https_proxy` or `HTTP_PROXY`). However, you can also define an HTTPS proxy manually in `agent.conf` file, as in the following example:
+NGINX Amplify Agent will use the usual environment variables common on Linux systems (e.g. `https_proxy` or `HTTP_PROXY`). This is essential in environments where direct internet access is restricted, such as in corporate networks or secure zones. By configuring a proxy, you ensure that the Amplify Agent can still communicate with the Amplify backend to report metrics, even when direct access is not possible. However, you can also define an HTTPS proxy manually in `agent.conf` file, as in the following example:
 
 ```nginx
 [proxies]
