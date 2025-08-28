@@ -30,17 +30,17 @@ Refer to [View traffic metrics]({{< ref "/controller/analytics/metrics/view-traf
 
 ## Available traffic metrics
 
-- `client.latency.{total | max | min | count}`
-- `client.network.latency.{total | max | min | count}`
-- `client.request.latency.{total | max | min | count}`
-- `client.ttfb.latency.{total | max | min | count}`
-- `client.response.latency.{total | max | min | count}`
-- `upstream.network.latency.{total | max | min | count}`
-- `upstream.header.latency.{total | max | min | count}`
-- `upstream.response.latency.{total | max | min | count}`
-- `http.request.bytes_rcvd`
-- `http.request.bytes_sent`
-- `http.request.count`
+- `client.latency.{total | max | min | count}`: Measures the time taken for a client to receive a response after sending a request. Useful for identifying slow client connections.
+- `client.network.latency.{total | max | min | count}`: Captures the network delay experienced by the client. Helps in diagnosing network-related issues.
+- `client.request.latency.{total | max | min | count}`: Indicates the time taken to process a client's request. Critical for performance tuning.
+- `client.ttfb.latency.{total | max | min | count}`: Time to first byte, measuring the delay between sending a request and receiving the first byte of the response. Important for assessing server responsiveness.
+- `client.response.latency.{total | max | min | count}`: Total time taken to send the complete response to the client. Useful for understanding overall client experience.
+- `upstream.network.latency.{total | max | min | count}`: Network delay between NGINX and upstream servers. Helps in identifying upstream network bottlenecks.
+- `upstream.header.latency.{total | max | min | count}`: Time taken to receive the response headers from upstream servers. Useful for diagnosing upstream server performance.
+- `upstream.response.latency.{total | max | min | count}`: Total time taken to receive the complete response from upstream servers. Important for upstream performance analysis.
+- `http.request.bytes_rcvd`: Total bytes received in HTTP requests. Useful for bandwidth monitoring.
+- `http.request.bytes_sent`: Total bytes sent in HTTP responses. Helps in understanding data transfer volumes.
+- `http.request.count`: Total number of HTTP requests processed. Useful for traffic analysis and capacity planning.
 
 {{< see-also >}}
 Refer to the [NGINX Controller Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for details about these and the other metrics that NGINX Controller reports.
@@ -48,7 +48,7 @@ Refer to the [NGINX Controller Metrics Catalog]({{< ref "/controller/analytics/c
 
 ## Calculating traffic metrics
 
-As traffic flows through a configured application, NGINX Controller collects the traffic-related data. With heavy traffic, the number of single, distinguishable metrics can be challenging to discern. For this reason, the metric values are aggregated.
+As traffic flows through a configured application, NGINX Controller, with the help of the amplify agent, collects the traffic-related data. The amplify agent plays a crucial role in gathering detailed metrics and sending them to the NGINX Controller for aggregation and analysis. With heavy traffic, the number of single, distinguishable metrics can be challenging to discern. For this reason, the metric values are aggregated.
 
 The aggregation happens every publish period -- this period is stored in the `aggregation_duration` dimension, and is usually 30 seconds -- and is based on metric dimensions.
 
