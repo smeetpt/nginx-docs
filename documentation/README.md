@@ -12,6 +12,7 @@ If you're interested in contributing to the [NGINX documentation website](https:
 
 ## Topics
 
+- [NGINX Products Glossary](/documentation/nginx-products-glossary.md)
 - [Contributing closed content](/documentation/closed-contributions.md)
 - [Information architecture heuristics](/documentation/ia-heuristics.md)
 - [Maintainers etiquette](/documentation/maintainers-etiquette.md)
