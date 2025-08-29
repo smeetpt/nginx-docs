@@ -8,7 +8,7 @@ type:
 - reference
 ---
 
-This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
+This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.\n\nCentralized glossary notice: A single authoritative glossary for NGINX terms is now maintained at content/nginx-one/glossary.md. The glossary in this page is legacy and will be superseded once references are updated to point to the central glossary.
 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
