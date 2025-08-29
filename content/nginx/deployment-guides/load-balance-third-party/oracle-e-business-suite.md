@@ -950,7 +950,7 @@ http {
         #allow 10.0.0.0/8;
         deny all;
 
-        # Enable the NGINX Plus API for metrics collection.
+        # Enable NGINX Plus API for metrics collection.
         location /api {
             api write=on;
             access_log off;
@@ -1141,7 +1141,7 @@ http {
         #allow 10.0.0.0/8;
         deny all;
 
-        # Enable the NGINX Plus API for metrics collection.
+        # Enable NGINX Plus API for metrics collection.
         location /api {
             api write=on;
             access_log off;
