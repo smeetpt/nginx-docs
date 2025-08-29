@@ -1000,6 +1000,30 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
   sudo make install
   ```
 
+  Example for ARM-based Macs (Apple Silicon):
+  ```shell
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
+  tar -zxf openssl-3.0.13.tar.gz
+  cd openssl-3.0.13
+  ./Configure darwin64-arm64-cc --prefix=/usr/local
+  make
+  sudo make install
+  ```
+
+  Note: The above command for ARM-based Macs uses the `darwin64-arm64-cc` configuration target. For more details on configuration targets, refer to the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md).
+
+  Example for Linux (general):
+  ```shell
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
+  tar -zxf openssl-3.0.13.tar.gz
+  cd openssl-3.0.13
+  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
+  make -j$(nproc)
+  sudo make install
+  ```
+
+  For more information on building OpenSSL for different platforms, please refer to the [OpenSSL INSTALL.md](https://github.com/openssl/openssl/blob/master/INSTALL.md).
+
   Example for RHEL-based:
   ```shell
   curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz
