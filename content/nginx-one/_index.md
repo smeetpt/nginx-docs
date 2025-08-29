@@ -1,6 +1,6 @@
 ---
 title: F5 NGINX One Console
-description: The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
+description: F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
 url: /nginx-one/
 hasCustomContent: true
 cascade:
@@ -12,7 +12,7 @@ cascade:
       Simplify, scale, secure, and collaborate with your NGINX fleet 
     {{</ card >}}
     {{< card title="Get started" >}}
-      See benefits from the NGINX One Console
+      See benefits from NGINX One Console
     {{</ card >}}
     {{< card title="Connect your instances" >}}
       Work with data plane keys, containers, and proxy servers
@@ -29,7 +29,7 @@ cascade:
     {{< card title="Organize users with RBAC" >}}
       Assign responsibilities with role-based access control 
     {{</ card >}}
-    {{< card title="Automate with the NGINX One API" >}}
+    {{< card title="Automate with NGINX One API" >}}
       Manage your NGINX fleet over REST 
     {{</ card >}}
     {{< card title="Glossary" >}}
