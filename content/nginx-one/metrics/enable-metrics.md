@@ -12,7 +12,7 @@ nd-content-type: tutorial
 nd-product: NGINX-One
 ---
 
-The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
+NGINX One console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 
 ### Enable NGINX Plus API
 
