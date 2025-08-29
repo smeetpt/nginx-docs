@@ -11,6 +11,8 @@ type:
 
 ## Introduction
 
+For definitions of terms used in this document, please refer to the [NGINX Products Glossary]({{< ref "/controller/glossary.md" >}}).
+
 As noted in the F5 NGINX Controller [API Overview]({{< ref "/controller/api/overview.md" >}}), NGINX Controller is organized into four top-level areas:
 
 - **Analytics**: Enables data visualization for NGINX Controller.
