@@ -5,7 +5,7 @@ title: Glossary
 weight: 10000
 ---
 
-This is a glossary of terms related to F5 NGINX Ingress Controller and Kubernetes as a whole.
+This is a comprehensive glossary of terms related to NGINX, including F5 NGINX Ingress Controller, Kubernetes, and other NGINX-related technologies.
 
 ---
 
@@ -19,7 +19,7 @@ _Ingress_ resources enable the following functionality:
 - **Content-based routing**, using hosts and paths
 - **TLS/SSL termination**, based on hostnames
 
-For additional information, please read the official [Kubernetes Ingress Documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+
 
 ---
 
@@ -27,4 +27,4 @@ For additional information, please read the official [Kubernetes Ingress Documen
 
 *Ingress Controllers* are applications within a Kubernetes cluster that enable [Ingress]({{< ref "/nic/glossary.md#ingress">}}) resources to function. They are not automatically deployed with a Kubernetes cluster, and can vary in implementation based on intended use, such as load balancing algorithms for Ingress resources.
 
-[The design of NGINX Ingress Controller]({{< ref "/nic/overview/design.md">}}) explains the technical details of NGINX Ingress Controller.
+
