@@ -10,6 +10,14 @@ After you [install and start]({{< ref "/amplify/nginx-amplify-agent/install/inst
 
 If you don't see the new system or NGINX instance in the web interface, or (some) metrics aren't being collected, please review the following:
 
+## Definitions
+
+### Instrumentation Guidance
+
+- Definitions and terminology for metrics collection, including Amplify Agent, receiver, stub_status, and metrics.
+- Instrumentation Guidance: follow the practical steps in the Practical Demonstration section to diagnose metric collection issues.
+
+
   1. The NGINX Amplify Agent package has been successfully [installed]({{< ref "/amplify/nginx-amplify-agent/install/installing-amplify-agent" >}}), and no warnings were reported during the installation.
   2. The `amplify-agent` process is running and updating its [log file]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#agent-logfile" >}}).
   3. NGINX Amplify Agent is running under the same user as your NGINX worker processes.
@@ -24,3 +32,28 @@ If you don't see the new system or NGINX instance in the web interface, or (some
   12. Outbound TLS/SSL from the system to *receiver.amplify.nginx.com* is not restricted. This can be confirmed with `curl(1)`. [Configure a proxy server]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#setting-up-a-proxy" >}}) for NGINX Amplify Agent if required.
   13. *selinux(8)*, *apparmor(7)* or [grsecurity](https://grsecurity.net) are not interfering with the metric collection. E.g., for _selinux_(8)* review **/etc/selinux/config**. Try `setenforce 0` temporarily and see if it improves the situation for certain metrics.
   14. Some VPS providers use hardened Linux kernels that may restrict non-root users from accessing */proc* and */sys*. Metrics describing system and NGINX disk I/O are usually affected. There is no easy workaround except for allowing NGINX Amplify Agent to run as `root`. Sometimes fixing permissions for */proc* and */sys/block* may work.
+
+## Practical Demonstration
+
+This section provides a step-by-step example to reproduce a metric collection issue, verify installation and agent process, check user permissions, verify time synchronization, confirm stub_status and DNS/egress reachability, collect logs, and validate resolution by rechecking the Amplify UI after fixes. Example diagnostic commands are provided in parentheses.
+
+### Step-by-step example
+1) Reproduce the issue: intentionally disable a metric or simulate a misconfiguration.
+2) Verify installation and agent process:
+   - systemctl status amplify-agent
+   - ps aux | grep amplify-agent | grep -v grep
+3) Check user permissions:
+   - id amplify
+   - ls -ld /var/log/amplify-agent
+4) Verify time synchronization:
+   - timedatectl status
+   - date
+5) Confirm stub_status and DNS/egress reachability:
+   - curl -sS http://localhost/nginx_status || curl -sS http://127.0.0.1/nginx_status
+   - dig receiver.amplify.nginx.com
+   - curl -I https://receiver.amplify.nginx.com
+6) Collect logs:
+   - tail -f /var/log/amplify-agent/amplify-agent.log
+7) Validate resolution by rechecking the Amplify UI after fixes:
+   - Refresh the Amplify UI and verify metrics appear; wait up to 2 minutes and re-check.
+
