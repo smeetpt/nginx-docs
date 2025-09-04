@@ -11,6 +11,19 @@ type:
 
 ## Overview
 
+{{< note >}}
+Related products and services — quick list: this guide focuses on API Management; for a complete list of products and services and how they can help your business, see the master Products & Services page: {{< ref "/controller/products-and-services.md" >}}.
+
+- NGINX Plus — a high-performance load balancer and API gateway to improve availability and scale.
+- NGINX Controller — centralized management, monitoring, and policy control for NGINX instances.
+- NGINX App Protect — a web application firewall (WAF) that protects applications and APIs from attacks.
+- NGINX Ingress Controller — Kubernetes ingress to manage and secure traffic for containerized apps.
+- NGINX Service Mesh — service-to-service security, observability, and traffic control for microservices.
+- Professional Services & Support — deployment, optimization, and ongoing technical support to accelerate time to value.
+
+For the complete catalog and detailed guidance on how each product can support your API strategy, refer to the Products & Services page linked above.
+{{< /note >}}
+
 The F5 NGINX Controller API Management module provides full life cycle management for your APIs. This document provides a walkthrough of the steps needed to create, version, and publish your API using the NGINX Controller API Management module. When you have completed this guide, you should have the following resources:
 
 - An **API Definition**, which stores a collection of related API resources. It can be thought of as a folder.
