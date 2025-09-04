@@ -12,6 +12,21 @@ type:
 
 You can use F5 NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< ref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
 
+For a full listing of our products and services, see the master Products & Services page: [Products & Services]({{< ref "/controller/services/products-and-services.md" >}}).
+
+Below are key products and services relevant to Dev Portals and how they can help your business:
+
+- Developer Portals — Hosted sites for API documentation and developer onboarding; help customers discover and consume your APIs.
+- API Management — Tools to define, publish, and manage APIs, including versioning and lifecycle workflows to streamline delivery.
+- Gateways — Traffic ingress points that route and secure API traffic and expose Dev Portals at assigned hostnames.
+- App Components — Back-end service groupings used to connect Published APIs to your infrastructure for reliable routing.
+- Security Policies — Authentication, authorization, and traffic policies to protect APIs and enforce access controls.
+- Monitoring & Analytics — Observability tools that provide metrics and logs to measure API performance and usage.
+- Environments & Instances — Logical and physical groupings to isolate resources and host Gateways across deployment stages.
+- Published APIs — Deployed API configurations that are made available to consumers through Dev Portals.
+
+These offerings can help your business streamline API delivery, improve developer experience, enforce security, and gain operational insights.
+
 ## About Developer Portals
 
 In NGINX Controller, each Dev Portal sits within an Environment. An Environment can contain multiple Dev Portals. You can use the same Dev Portal names across different Environments, which means you can create "test", "dev", and "production" versions of your Dev Portal across the corresponding Environments.
@@ -133,6 +148,7 @@ If the issue persists, check the other resources for configuration errors.
 
 - [Learn about Policies]({{< ref "/controller/services/available-policies.md" >}})
 - [Manage Your APIs]({{< relref "./manage-apis.md" >}})
+- [Products & Services]({{< ref "/controller/services/products-and-services.md" >}})
 
 {{< versions "3.7" "3.18" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}
