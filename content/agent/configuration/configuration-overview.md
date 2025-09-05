@@ -3,14 +3,13 @@ title: Basic configuration
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1229
-type:
-- how-to
+nd-docs: DOCS-1229
+nd-content-type: how-to
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
@@ -20,9 +19,83 @@ The following sections explain how to configure NGINX Agent using configuration 
 
 - You must open any required firewall ports or add SELinux/AppArmor rules for the ports and IPs you want to use.
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Configure with Config Files
+
+## Set Up Rate Limiting in NGINX
+
+This section provides guidance on configuring rate limiting in NGINX, including practical examples and common use cases.
+
+### Basic Rate Limiting Configuration
+
+To set up basic rate limiting, use the `limit_req_zone` and `limit_req` directives in your NGINX configuration. For example:
+
+```nginx
+http {
+    limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+
+    server {
+        location /api/ {
+            limit_req zone=one burst=5 nodelay;
+            proxy_pass http://backend;
+        }
+    }
+}
+```
+
+This configuration limits clients to 1 request per second with a burst capacity of 5 requests.
+
+### Set Up Burst and Delay Limits
+
+To allow bursts with a delay, configure as follows:
+
+```nginx
+limit_req_zone $binary_remote_addr zone=two:10m rate=10r/s;
+
+server {
+    location /api/ {
+        limit_req zone=two burst=20 delay=5;
+        proxy_pass http://backend;
+    }
+}
+```
+
+This setup permits a burst of 20 requests, with a delay of 5 seconds for excess requests.
+
+### Apply Multiple Rate Limits
+
+You can apply multiple rate limits for different locations or services:
+
+```nginx
+limit_req_zone $binary_remote_addr zone=api:10m rate=5r/s;
+limit_req_zone $binary_remote_addr zone=images:10m rate=10r/s;
+
+server {
+    location /api/ {
+        limit_req zone=api burst=10;
+        proxy_pass http://api_backend;
+    }
+    location /images/ {
+        limit_req zone=images burst=20;
+        proxy_pass http://images_backend;
+    }
+}
+```
+
+### Cross-Reference Directive References
+
+- [`limit_req`](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_req)
+- [`limit_req_zone`](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_req_zone)
+- [`limit_conn`](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_conn)
+
+### Additional Best Practices
+
+- Use descriptive zone names.
+- Adjust burst and delay parameters based on your traffic patterns.
+- Monitor logs to fine-tune rate limits.
+
+This task-based approach helps users implement rate limiting effectively, with practical examples and clear guidance.
 
 The default locations of configuration files for NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. The `agent-dynamic.conf` file default location is different for FreeBSD which is located `/var/db/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
@@ -31,9 +104,9 @@ Examples of the configuration files are provided below:
 <details open>
     <summary>example nginx-agent.conf</summary>
 
-{{<note>}}
+{{< call-out "note" >}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the control plane.
-{{</note>}}
+{{< /call-out >}}
 
 ```nginx {hl_lines=[13]}
 #
@@ -50,7 +123,7 @@ server:
   # host of the control plane
   host: <FQDN>
   grpcPort: 443
-  backoff: # note: default values are prepopulated 
+  backoff: # note: default values are prepopulated
     initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
     randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
     multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
@@ -88,7 +161,7 @@ metrics:
   report_interval: 1m
   collection_interval: 15s
   mode: aggregated
-    backoff: # note: default values are prepopulated 
+    backoff: # note: default values are prepopulated
       initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
       randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
       multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
@@ -119,11 +192,11 @@ nginx_app_protect:
 <details open>
     <summary>example dynamic-agent.conf</summary>
 
-{{<note>}}
+{{< call-out "note" >}}
 Default location in Linux environments: `/var/lib/nginx-agent/agent-dynamic.conf`
 
 Default location in FreeBSD environments: `/var/db/nginx-agent/agent-dynamic.conf`
-{{</note>}}
+{{< /call-out >}}
 
 ```yaml
 # Dynamic configuration file for NGINX Agent.
@@ -170,15 +243,15 @@ nginx-agent
 
 ### CLI Flags and Environment Variables
 
-{{< warning >}} 
+{{< call-out "warning" >}}
 
-Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`. 
+Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
 If you are upgrading from an older version, update your configuration accordingly.
 
-{{< /warning >}}
+{{< /call-out >}}
 
-{{<bootstrap-table "table table-responsive table-bordered">}}
+{{< table >}}
 | CLI flag                                    | Environment variable                 | Description                                                                 |
 |---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------|
 | `--api-cert`                                | `NGINX_AGENT_API_CERT`                       | Specifies the certificate used by the Agent API.                            |
@@ -215,28 +288,26 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--tls-enable`                              | `NGINX_AGENT_TLS_ENABLE`                     | Enables TLS for secure communications.                                      |
 | `--tls-key`                                 | `NGINX_AGENT_TLS_KEY`                        | Specifies the path to the certificate key file for TLS.                     |
 | `--tls-skip-verify`                         | `NGINX_AGENT_TLS_SKIP_VERIFY`                | Insecurely skips verification for gRPC TLS credentials.                     |
-{{</bootstrap-table>}}
+{{< /table >}}
 
-<br>
+{{< call-out "note" >}}
+Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
 
-{{<note>}}
-Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane. 
-
-NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location. 
+NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
 
 NGINX Agent follows NGINX configuration directives to file paths outside the designated directories and reads certificates' metadata. NGINX Agent uses the following directives:
 
 - [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 
-{{</note>}}
+{{< /call-out >}}
 
-{{<note>}} Use the `--dynamic-config-path` command-line option to set the location of the dynamic config file. This setting also requires you to move your dynamic config to the new path, or create a new dynamic config file at the specified location.
+{{< call-out "note" >}} Use the `--dynamic-config-path` command-line option to set the location of the dynamic config file. This setting also requires you to move your dynamic config to the new path, or create a new dynamic config file at the specified location.
 
 Default location in Linux environments: `/var/lib/nginx-agent/agent-dynamic.conf`
 
 Default location in FreeBSD environments: `/var/db/nginx-agent/agent-dynamic.conf`
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Log Rotation
 
