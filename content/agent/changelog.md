@@ -86,7 +86,7 @@ We have made the following maintenance-related minor changes:
 - updated runc dependency highlighted in security scan scan by [@oliveromahony](https://github.com/oliveromahony) in [#842](https://github.com/nginx/agent/pull/842)
 - Update CODEOWNERS by [@oCHRISo](https://github.com/oCHRISo) in [#851](https://github.com/nginx/agent/pull/851)
 - Check version command output by [@aphralG](https://github.com/aphralG) in [#853](https://github.com/nginx/agent/pull/853)
-- Bump NGINX plus go client version from v1 to v2 by [@dhurley](https://github.com/dhurley) in [#879](https://github.com/nginx/agent/pull/879)
+- Bump NGINX Plus Go client version from v1 to v2 by [@dhurley](https://github.com/dhurley) in [#879](https://github.com/nginx/agent/pull/879)
 - Allowlist Error Messages by [@aphralG](https://github.com/aphralG) in [#907](https://github.com/nginx/agent/pull/907)
 
 ---
@@ -116,7 +116,7 @@ We have made the following updates to the documentation:
 
 We have made the following maintenance-related minor changes:
 
-- add new plus docker images to v2 pipeline by [@aphralG](https://github.com/aphralG) in [#779](https://github.com/nginx/agent/pull/779)
+- add new Plus docker images to v2 pipeline by [@aphralG](https://github.com/aphralG) in [#779](https://github.com/nginx/agent/pull/779)
 - Add MaxRecvMsgSize and MaxSendMsgSize to client and server options by [@oliveromahony](https://github.com/oliveromahony) in [#795](https://github.com/nginx/agent/pull/795)
 - added leak tests for agent v2 by [@oliveromahony](https://github.com/oliveromahony) in [#807](https://github.com/nginx/agent/pull/807)
 
