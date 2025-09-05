@@ -19,9 +19,9 @@ December 15, 2021
 
 ## Upgrade Considerations
 
-Take note of the following considerations when upgrading to this version of the NGINX Controller App Delivery Module:
+Take note of the following considerations when upgrading to this version of NGINX Controller App Delivery Module:
 
-- After upgrading NGINX Controller, make sure to upgrade the NGINX Controller Agent too.
+- After upgrading NGINX Controller, make sure to upgrade NGINX Controller Agent too.
 
   {{< caution >}} If you're upgrading from NGINX Controller 3.18 or earlier to the NGINX Controller App Delivery Module 3.20 or later, the Controller Agent will go offline during the upgrade process.{{< /caution >}}
 
@@ -55,9 +55,9 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **Instance Group Support**
 
-  NGINX Controller ADC Release 3.22 includes support for instance groups. Instance group support allows grouping of NGINX+ data plane instances into a logical group which receive identical configuration. This simplifies the task of configuration updates, where the admin thinks in terms of the group, instead of having to worry about individual members.
+  NGINX Controller ADC Release 3.22 includes support for instance groups. Instance group support allows grouping of NGINX Plus data plane instances into a logical group which receive identical configuration. This simplifies the task of configuration updates, where the admin thinks in terms of the group, instead of having to worry about individual members.
 
-- **NGINX+ Worker Process Tuning**
+- **NGINX Plus Worker Process Tuning**
 
   NGINX Controller ADC Release 3.22 includes support for tuning NGINX Plus worker processes. The associated directives are: `worker_connections`, `worker_priority`, `worker_processes`, `worker_rlimit_nofile`, and `multi_accept`. Note that this tuning is only supported via the API, and not via the user interface.
 
@@ -83,7 +83,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **Added Technology Preview of RHEL 8 Support for Controller Hosts**
 
-  Support for RHEL 8 is a technology preview. Installing NGINX Controller and agent on RHEL 8 seems to work well in low-scale deployments for testing and proof of concept purposes. Installing NGINX Controller on RHEL 8 for large-scale deployments has not been tested. Possibility of performance or stability issues exist. Therefore, we strongly recommend testing Controller on RHEL 8 for scale in a test environment before deploying to production. See the [Install NGINX Controller on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) document to prepare your RHEL 8 system to install NGINX Controller and the NGINX Controller Agent.
+  Support for RHEL 8 is a technology preview. Installing NGINX Controller and agent on RHEL 8 seems to work well in low-scale deployments for testing and proof of concept purposes. Installing NGINX Controller on RHEL 8 for large-scale deployments has not been tested. Possibility of performance or stability issues exist. Therefore, we strongly recommend testing Controller on RHEL 8 for scale in a test environment before deploying to production. See the [Install NGINX Controller on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) document to prepare your RHEL 8 system to install NGINX Controller and NGINX Controller Agent.
 
 - **Adds support for NGINX App Protect v3.7**
 
@@ -307,7 +307,7 @@ The following issues are known to be present in this release. Look for updates t
 
 ### UDP statistics may not be reported following installation in rare circumstances (31117)
 
-  After installing NGINX ADC Controller 3.22, it is possible that you may not see UDP statistics correctly registered. You need to manually restart the NGINX Controller Agent component on your datapaths. It takes approximately 10 minutes after the connection is made for the UDP statistics to be reported.
+  After installing NGINX ADC Controller 3.22, it is possible that you may not see UDP statistics correctly registered. You need to manually restart NGINX Controller Agent component on your datapaths. It takes approximately 10 minutes after the connection is made for the UDP statistics to be reported.
 
 #### Workaround
 
