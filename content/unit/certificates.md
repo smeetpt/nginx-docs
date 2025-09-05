@@ -178,6 +178,30 @@ $ curl -v https://127.0.0.1 # Port 443 is conventionally used for HTTPS connecti
 Finally, you can delete a certificate bundle that you don't need anymore
 from the storage, running the following command as root:
 
+---
+
+## Certificate Revocation Checking
+
+To ensure the validity of certificates and prevent the use of revoked certificates, it is important to implement certificate revocation checking. This can be achieved using Certificate Revocation Lists (CRLs) or Online Certificate Status Protocol (OCSP).
+
+### Certificate Revocation Lists (CRLs)
+
+CRLs are lists published by Certificate Authorities (CAs) that contain serial numbers of revoked certificates. NGINX can be configured to check CRLs by specifying the CRL distribution points in the certificate or by configuring the server to fetch and verify CRLs.
+
+### OCSP (Online Certificate Status Protocol)
+
+OCSP allows real-time verification of a certificate's revocation status by querying the CA's OCSP responder. NGINX supports OCSP stapling, which embeds the OCSP response in the TLS handshake, reducing latency.
+
+### Configuring Revocation Checking in NGINX
+
+To enable CRL or OCSP checking in NGINX, ensure your server configuration includes the appropriate directives, such as `ssl_stapling`, `ssl_stapling_verify`, and `ssl_trusted_certificate` pointing to the CA bundle that contains OCSP responder URLs and CRL distribution points.
+
+### Verifying Revocation Checking
+
+Test your configuration to verify that CRL and OCSP checks are functioning correctly. Use tools like `openssl` to check the certificate status and ensure that revocation information is being correctly validated.
+
+Implementing revocation checking enhances your security posture by ensuring that revoked certificates are not accepted, thereby preventing potential security breaches due to compromised or misissued certificates.
+
 ```console
 # curl -X DELETE --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/certificates/bundle              # Certificate bundle name
