@@ -401,6 +401,12 @@ understanding:
     helps readers grasp the new information more effectively.
 
 
+### Glossary and cross-linking
+
+To ensure terminology consistency across templates, readers should refer to the glossary for NGINX products. When you introduce terms in this concept document, link to the glossary entry if applicable, and use the same wording as the glossary. Additionally, ensure cross-links to related concept templates use canonical terminology from the glossary to help readers navigate.
+
+You can find the glossary at https://nginx.com/resources/glossary/. For cross-template consistency, when referencing terms applicable to this concept, use the glossary terminology and link to its glossary entry; in the template body, use consistent terminology and add cross-links where relevant.
+
 ---
 
 > Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Concept%20guide) to give feedback on this template.
