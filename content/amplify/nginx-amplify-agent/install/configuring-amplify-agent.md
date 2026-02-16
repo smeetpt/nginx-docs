@@ -10,7 +10,7 @@ F5 NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf
 
 ## Overriding the Effective User ID
 
-NGINX Amplify Agent will drop *root* privileges on startup. By default, it will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`).
+NGINX Amplify Agent will drop *root* privileges on startup. For example, in a shared hosting environment, you might want to set the effective user ID to a specific user that has limited permissions to ensure security and proper metrics collection. This can be done by specifying the user in the `agent.conf` file as shown below. By default, it will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`).
 
 NGINX Amplify Agent and the running NGINX instances need to use the same user ID for NGINX Amplify Agent to collect all NGINX metrics properly.
 
@@ -28,7 +28,7 @@ The second option explicitly tells NGINX Amplify Agent where to look for an NGIN
 
 ## Changing the API Key
 
-When you install NGINX Amplify Agent for the first time using the procedure above, your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, please edit the following section in `agent.conf` accordingly:
+When you install NGINX Amplify Agent for the first time, your API key is crucial for authenticating and sending metrics to the Amplify backend. For instance, if you are migrating to a new Amplify account, you will need to update the API key in the `agent.conf` file to ensure that metrics are sent to the correct account. using the procedure above, your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, please edit the following section in `agent.conf` accordingly:
 
 ```nginx
 [credentials]
@@ -62,7 +62,7 @@ Alternatively, you can define an "alias" for the host in the UI (see the [Graphs
 
 ## Configuring the URL for stub_status or Status API
 
-When NGINX Amplify Agent finds a running NGINX instance, it automatically detects the [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) or the NGINX Plus [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) locations from the NGINX configuration.
+When NGINX Amplify Agent finds a running NGINX instance, it automatically detects the stub_status or the NGINX Plus API module locations. For example, in a high-security environment, you might want to change the default stub_status URL to a non-standard port or path to prevent unauthorized access while still allowing the Amplify Agent to collect metrics., it automatically detects the [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) or the NGINX Plus [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) locations from the NGINX configuration.
 
 To override the *stub_status* URI/URL, use the `stub_status` configuration option.
 
@@ -130,7 +130,7 @@ Make sure to [add the `syslog` settings]({{< ref "/amplify/nginx-amplify-agent/i
 
 ## Excluding Certain NGINX Log Files
 
-By default, NGINX Amplify Agent will try to find and watch all the `access.log` files described in the NGINX configuration. If there are multiple log files where the same request is logged, the metrics may get counted more than once.
+By default, NGINX Amplify Agent will try to find and watch all the `access.log` files. In a scenario where you have multiple applications logging to different files, you might want to exclude certain logs to prevent duplicate metrics. For instance, if `app1` and `app2` log the same requests, you can exclude `app1` logs to ensure accurate metrics. described in the NGINX configuration. If there are multiple log files where the same request is logged, the metrics may get counted more than once.
 
 To exclude specific NGINX log files from the metric collection, add an exclusion to the `/etc/amplify-agent/agent.conf` as in the following example:
 

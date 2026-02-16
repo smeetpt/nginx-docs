@@ -30,17 +30,49 @@ Refer to [View traffic metrics]({{< ref "/controller/analytics/metrics/view-traf
 
 ## Available traffic metrics
 
-- `client.latency.{total | max | min | count}`
-- `client.network.latency.{total | max | min | count}`
-- `client.request.latency.{total | max | min | count}`
-- `client.ttfb.latency.{total | max | min | count}`
-- `client.response.latency.{total | max | min | count}`
-- `upstream.network.latency.{total | max | min | count}`
-- `upstream.header.latency.{total | max | min | count}`
-- `upstream.response.latency.{total | max | min | count}`
-- `http.request.bytes_rcvd`
-- `http.request.bytes_sent`
-- `http.request.count`
+- `client.latency.{total | max | min | count}`: Measures the latency experienced by the client. Useful for identifying delays in client-server communication.
+  - **Use Case**: Monitor client-side performance to ensure quick response times.
+  - **Example**: High `client.latency.max` values may indicate network issues.
+
+- `client.network.latency.{total | max | min | count}`: Captures the network latency from the client side.
+  - **Use Case**: Diagnose network-related performance bottlenecks.
+  - **Example**: Use `client.network.latency.total` to assess overall network delay.
+
+- `client.request.latency.{total | max | min | count}`: Represents the time taken to process client requests.
+  - **Use Case**: Optimize request handling to improve throughput.
+  - **Example**: A high `client.request.latency.max` could suggest server processing delays.
+
+- `client.ttfb.latency.{total | max | min | count}`: Time to first byte latency, indicating server responsiveness.
+  - **Use Case**: Ensure server is responsive to initial client requests.
+  - **Example**: High `client.ttfb.latency.max` may indicate server-side processing delays.
+
+- `client.response.latency.{total | max | min | count}`: Measures the latency in sending responses back to the client.
+  - **Use Case**: Identify slow response times affecting user experience.
+  - **Example**: Use `client.response.latency.total` to evaluate response efficiency.
+
+- `upstream.network.latency.{total | max | min | count}`: Network latency experienced by upstream servers.
+  - **Use Case**: Monitor upstream server performance and network conditions.
+  - **Example**: High `upstream.network.latency.max` could indicate upstream network issues.
+
+- `upstream.header.latency.{total | max | min | count}`: Latency in processing upstream headers.
+  - **Use Case**: Optimize header processing to reduce delays.
+  - **Example**: Analyze `upstream.header.latency.total` for header processing efficiency.
+
+- `upstream.response.latency.{total | max | min | count}`: Latency in receiving responses from upstream servers.
+  - **Use Case**: Ensure timely responses from upstream services.
+  - **Example**: High `upstream.response.latency.max` may indicate slow upstream responses.
+
+- `http.request.bytes_rcvd`: Total bytes received in HTTP requests.
+  - **Use Case**: Monitor data inflow to manage bandwidth usage.
+  - **Example**: Sudden spikes in `http.request.bytes_rcvd` could indicate increased traffic.
+
+- `http.request.bytes_sent`: Total bytes sent in HTTP requests.
+  - **Use Case**: Track data outflow to optimize bandwidth allocation.
+  - **Example**: Use `http.request.bytes_sent` to assess outgoing data volume.
+
+- `http.request.count`: Number of HTTP requests processed.
+  - **Use Case**: Measure application load and request handling capacity.
+  - **Example**: High `http.request.count` values may require scaling resources.
 
 {{< see-also >}}
 Refer to the [NGINX Controller Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for details about these and the other metrics that NGINX Controller reports.
